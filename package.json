@@ -1,0 +1,21 @@
+{
+  "name": "wapm-service",
+  "version": "0.1.0-2",
+  "description": "Web Audio Package Manager CLI",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "dependencies": {
+    "express": "latest",
+    "mongoose": "latest",
+    "request-extend": "latest"
+  },
+  "engines": {
+    "node": "0.8.x"
+  },
+  "subdomain": "wapm-service"
+}
