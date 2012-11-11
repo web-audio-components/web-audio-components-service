@@ -14,7 +14,9 @@
     "underscore": "latest",
     "express": "latest",
     "mongoose": "latest",
-    "request-extend": "latest"
+    "request-extend": "latest",
+    "node-schedule": "latest",
+    "github": "latest"
   },
   "devDependencies": {
     "request" : "latest",
