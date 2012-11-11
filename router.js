@@ -12,6 +12,6 @@ module.exports = function ( app ) {
   app.get( '/packages/search/:name', packages.search );
 
   app.use(function ( err, req, res, next ) {
-    res.send( 500, { success: false, message: err.message });
+    res.send( err.code || 500, { error: err.message });
   });
 };
