@@ -19,9 +19,9 @@ module.exports = function ( mongoose ) {
   // TODO More efficient querying???
   Packages.statics.search = function ( query, callback ) {
     this.find({}).or([
-      { name : { $regex : query }},
+      { name : { $regex : query, $options : '-i' }},
       { keywords : query },
-      { description : { $regex : query }}
+      { description : { $regex : query, $options : '-i' }}
     ]).exec( callback );
   };
 

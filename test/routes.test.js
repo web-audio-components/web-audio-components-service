@@ -146,7 +146,7 @@ describe( 'GET /packages/search/:name', function () {
 
   it( 'searches the name for query, exact', function ( done ) {
     searchPackages( 'simple-gain', function ( err, res, body ) {
-      expect( err ).to.be.falsey;
+      expect( !!err ).to.be.equal( false );
       body.should.have.length( 1 );
       body[ 0 ].name.should.equal( 'simple-gain' );
       done();
@@ -155,15 +155,15 @@ describe( 'GET /packages/search/:name', function () {
 
   it( 'searches the name for query, fuzzy', function ( done ) {
     searchPackages( 'simple-', function ( err, res, body ) {
-      expect( err ).to.be.falsey;
+      expect( !!err ).to.be.equal( false );
       body.should.have.length( 3 );
       done();
     });
   });
 
-  it( 'searches the description for query', function ( done ) {
-    searchPackages( 'cool', function ( err, res, body ) {
-      expect( err ).to.be.falsey;
+  it( 'searches the description for query, case-insensitive', function ( done ) {
+    searchPackages( 'mt-2', function ( err, res, body ) {
+      expect( !!err ).to.be.equal( false );
       body.should.have.length( 1 );
       body[ 0 ].name.should.equal( 'simple-gain' );
       done();
@@ -171,10 +171,10 @@ describe( 'GET /packages/search/:name', function () {
   });
   
   it( 'searches the keywords for query', function ( done ) {
-    searchPackages( 'plate', function ( err, res, body ) {
-      expect( err ).to.be.falsey;
+    searchPackages( 'chorus', function ( err, res, body ) {
+      expect( !!err ).to.be.equal( false );
       body.should.have.length( 1 );
-      body[ 0 ].name.should.equal( 'simple-reverb' );
+      body[ 0 ].name.should.equal( 'simple-delay' );
       done();
     });
   });

@@ -1,6 +1,6 @@
 {
   "name": "wapm-service",
-  "version": "0.1.0-9",
+  "version": "0.1.0-10",
   "description": "Web Audio Package Manager CLI",
   "main": "server.js",
   "scripts": {
