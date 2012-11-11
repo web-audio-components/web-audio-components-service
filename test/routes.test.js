@@ -108,6 +108,15 @@ describe( 'POST /packages', function () {
     // TODO use async module
     function doneCount () { count++; if ( count === 3 ) { done(); } }
   });
+
+  // TODO probably should return a 400 with a better message!!
+  it( 'rejects a manifest with the same name as an existing one', function ( done ) {
+    postManifest( 'valid-simple-reverb', function ( err, res, body ) {
+      res.statusCode.should.equal( 500 );
+      body.error.should.contain( 'duplicate' );
+      done();
+    });
+  });
 });
 
 describe( 'GET /packages', function () {
