@@ -2,7 +2,7 @@ var
   express = require( 'express' ),
   mongoose = require( 'mongoose' ),
   reqExtend = require( 'request-extend' ),
-  config = require( './config' ),
+  config = require( './config' )[ process.env.NODE_ENV ],
   app = express();
 
 var
