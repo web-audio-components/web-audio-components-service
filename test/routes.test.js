@@ -8,6 +8,7 @@ var
   should  = chai.should(),
   expect  = chai.expect,
   postManifest = helpers.postManifest,
+  getPackage = helpers.getPackage,
   db, models;
 
 // Clear out test database before start
@@ -32,52 +33,95 @@ after(function ( done ) {
 describe( 'POST /packages', function () {
   it( 'rejects manifests without a name', function ( done ) {
     postManifest( 'no-name', function ( err, res, body ) {
-      res.statusCode.should.equal( 400 );
-      body.error.should.contain( 'ValidatorError' );
-      done();
+      validatorError( err, res, body, done );
     });
   });
   
   it( 'rejects manifests without a repo', function ( done ) {
     postManifest( 'no-repo', function ( err, res, body ) {
-      res.statusCode.should.equal( 400 );
-      body.error.should.contain( 'ValidatorError' );
-      done();
+      validatorError( err, res, body, done );
     });  
   });
 
   it( 'rejects manifests without a description', function ( done ) {
     postManifest( 'no-description', function ( err, res, body ) {
-      res.statusCode.should.equal( 400 );
-      body.error.should.contain( 'ValidatorError' );
-      done();
+      validatorError( err, res, body, done );
     });
   });
 
   it( 'rejects manifests without a script', function ( done ) {
     postManifest( 'no-script', function ( err, res, body ) {
-      res.statusCode.should.equal( 400 );
-      body.error.should.contain( 'ValidatorError' );
-      done();
+      validatorError( err, res, body, done );
     });
   });
 
-  it( 'rejects manifests with names containing characters other than alpha, numeric and dashes', function () {
-    
+  // TODO a more robust test
+  it( 'rejects manifests with names containing characters other than alpha, numeric and dashes', function ( done ) {
+    postManifest( 'invalid-characters-name', function ( err, res, body ) {
+      validatorError( err, res, body, done );
+    });
   });
-  it( 'rejects manifests with names that don\'t start with a letter', function () {
-    
+
+  it( 'rejects manifests with names that start with a number', function ( done ) {
+    postManifest( 'starts-with-number-name', function ( err, res, body ) {
+      validatorError( err, res, body, done );
+    });
   });
-  it( 'rejects manifests with names less than 1 or greater than 30 characters', function () {
-    
+  
+  it( 'rejects manifests with names that start with a dash', function ( done ) {
+    postManifest( 'starts-with-dash-name', function ( err, res, body ) {
+      validatorError( err, res, body, done );
+    });
+  });
+
+  it( 'rejects manifests with names less than 1 characters', function ( done ) {
+    postManifest( 'less-than-one-name', function ( err, res, body ) {
+      validatorError( err, res, body, done );
+    });
+  });
+  
+  it( 'rejects manifests with more than 30 characters in the name', function ( done ) {
+    postManifest( '31-characters-name', function ( err, res, body ) {
+      validatorError( err, res, body, done );
+    });
   });
 
   it( 'some repo validation?', function () {
     
   });
 
-  it( 'adds valid packages to the repo', function () {
+  it( 'adds valid packages to the repo', function ( done ) {
+    var count = 0;
+    postManifest( 'valid-simple-reverb', function ( err, res, body ) {
+      res.statusCode.should.equal( 200 );
+      doneCount();
+    });
+    postManifest( 'valid-simple-gain', function ( err, res, body ) {
+      res.statusCode.should.equal( 200 );
+      doneCount();
+    });
+    postManifest( 'valid-simple-delay', function ( err, res, body ) {
+      res.statusCode.should.equal( 200 );
+      doneCount();
+    });
 
+    // TODO use async module
+    function doneCount () { count++; if ( count === 3 ) { done(); } }
+  });
+});
+
+describe( 'GET /packages', function () {
+
+  it( 'returns all available packages', function ( done ) {
+    getPackage(function ( err, res, body ) {
+      expect( err ).to.be.falsey;
+      body.should.have.length( 3 );
+      done();
+    });
+  });
+
+  it( 'returns available packages in alphabetical order', function ( done ) {
+    done();
   });
 });
 
@@ -86,10 +130,12 @@ describe( 'GET /packages/:name', function () {
 
 });
 
-describe( 'GET /packages', function () {
-
-});
-
 describe( 'GET /packages/search/:name', function () {
 
 });
+
+function validatorError ( err, res, body, done ) {
+  res.statusCode.should.equal( 400 );
+  body.error.should.contain( 'ValidatorError' );
+  done();
+}

@@ -1,0 +1,10 @@
+{
+  "name" : "abcdefghijklmnopqrstuvwxyzabcde",
+  "description" : "A simple gain, not as cool as the MT-2",
+  "repo" : "http://github.com/wapm/simple-gain",
+  "keywords" : [
+    "distortion",
+    "fuzz"
+  ],
+  "script" : "simple-gain.js"
+}
