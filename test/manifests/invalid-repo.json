@@ -1,7 +1,7 @@
 {
-  "name" : "simple-gain",
+  "name" : "some-gain-node",
   "description" : "A simple gain, not as cool as the MT-2",
-  "repo" : "wapm/simple-gain",
+  "repo" : "http://wapm/this-repo-does-not-exist",
   "keywords" : [
     "distortion",
     "fuzz"

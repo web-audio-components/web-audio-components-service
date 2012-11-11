@@ -86,8 +86,10 @@ describe( 'POST /packages', function () {
     });
   });
 
-  it( 'some repo validation?', function () {
-    
+  it( 'rejects manifests that don\'t have a valid github repo', function ( done ) {
+    postManifest( 'invalid-repo', function ( err, res, body ) {
+      validatorError( err, res, body, done );
+    });
   });
 
   it( 'adds valid packages to the repo', function ( done ) {

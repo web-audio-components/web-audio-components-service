@@ -1,6 +1,6 @@
 {
   "description" : "A simple reverb",
-  "repo" : "http://github.com/wapm/simple-reverb",
+  "repo" : "wapm/simple-reverb",
   "keywords" : [
     "reverb",
     "plate"

@@ -1,7 +1,7 @@
 {
   "name" : "simple-delay",
   "description" : "A simple delay",
-  "repo" : "http://github.com/wapm/simple-delay",
+  "repo" : "wapm/simple-delay",
   "keywords" : [
     "chorus",
     "reverb",

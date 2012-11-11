@@ -12,6 +12,10 @@ module.exports = function ( mongoose ) {
     return /^[a-zA-Z][a-zA-Z0-9\-]{0,29}$/.test( v );
   }, 'Package names must be between 1 and 30 characters, and contain only letters, numbers and dashes, and must begin with a letter.' );
 
+  Packages.path('repo').validate(function ( v ) {
+    return /^[a-zA-Z0-9-_]*\/[a-zA-Z0-9-_]*$/.test( v );
+  }, 'Repos must be of the GitHub format "owner/reponame"');
+  
   Packages.statics.search = function ( query, callback ) {
     this.find({}).or([
       { name : query },
