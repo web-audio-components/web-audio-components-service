@@ -15,12 +15,13 @@ module.exports = function ( mongoose ) {
   Packages.path('repo').validate(function ( v ) {
     return /^[a-zA-Z0-9-_]*\/[a-zA-Z0-9-_]*$/.test( v );
   }, 'Repos must be of the GitHub format "owner/reponame"');
-  
+
+  // TODO More efficient querying???
   Packages.statics.search = function ( query, callback ) {
     this.find({}).or([
-      { name : query },
+      { name : { $regex : query }},
       { keywords : query },
-      { description : query }
+      { description : { $regex : query }}
     ]).exec( callback );
   };
 

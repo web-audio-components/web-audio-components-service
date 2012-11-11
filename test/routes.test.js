@@ -9,6 +9,7 @@ var
   expect  = chai.expect,
   postManifest = helpers.postManifest,
   getPackage = helpers.getPackage,
+  searchPackages = helpers.searchPackages,
   db, models;
 
 // Clear out test database before start
@@ -36,11 +37,11 @@ describe( 'POST /packages', function () {
       validatorError( err, res, body, done );
     });
   });
-  
+
   it( 'rejects manifests without a repo', function ( done ) {
     postManifest( 'no-repo', function ( err, res, body ) {
       validatorError( err, res, body, done );
-    });  
+    });
   });
 
   it( 'rejects manifests without a description', function ( done ) {
@@ -67,7 +68,7 @@ describe( 'POST /packages', function () {
       validatorError( err, res, body, done );
     });
   });
-  
+
   it( 'rejects manifests with names that start with a dash', function ( done ) {
     postManifest( 'starts-with-dash-name', function ( err, res, body ) {
       validatorError( err, res, body, done );
@@ -79,7 +80,7 @@ describe( 'POST /packages', function () {
       validatorError( err, res, body, done );
     });
   });
-  
+
   it( 'rejects manifests with more than 30 characters in the name', function ( done ) {
     postManifest( '31-characters-name', function ( err, res, body ) {
       validatorError( err, res, body, done );
@@ -143,6 +144,40 @@ describe( 'GET /packages/:name', function () {
 
 describe( 'GET /packages/search/:name', function () {
 
+  it( 'searches the name for query, exact', function ( done ) {
+    searchPackages( 'simple-gain', function ( err, res, body ) {
+      expect( err ).to.be.falsey;
+      body.should.have.length( 1 );
+      body[ 0 ].name.should.equal( 'simple-gain' );
+      done();
+    });
+  });
+
+  it( 'searches the name for query, fuzzy', function ( done ) {
+    searchPackages( 'simple-', function ( err, res, body ) {
+      expect( err ).to.be.falsey;
+      body.should.have.length( 3 );
+      done();
+    });
+  });
+
+  it( 'searches the description for query', function ( done ) {
+    searchPackages( 'cool', function ( err, res, body ) {
+      expect( err ).to.be.falsey;
+      body.should.have.length( 1 );
+      body[ 0 ].name.should.equal( 'simple-gain' );
+      done();
+    });
+  });
+  
+  it( 'searches the keywords for query', function ( done ) {
+    searchPackages( 'plate', function ( err, res, body ) {
+      expect( err ).to.be.falsey;
+      body.should.have.length( 1 );
+      body[ 0 ].name.should.equal( 'simple-reverb' );
+      done();
+    });
+  });
 });
 
 function validatorError ( err, res, body, done ) {

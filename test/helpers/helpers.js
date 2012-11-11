@@ -25,5 +25,14 @@ exports.getPackage = function () {
   }
 
   request.get( options, callback );
+};
 
+exports.searchPackages = function ( query, callback ) {
+  var options = {
+    uri: 'http://localhost:' + config.port + '/packages/search/' + query,
+    timeout: 3000,
+    json: true
+  };
+
+  request.get( options, callback );
 };
