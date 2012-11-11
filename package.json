@@ -1,6 +1,6 @@
 {
   "name": "wapm-service",
-  "version": "0.1.0-8",
+  "version": "0.1.0-9",
   "description": "Web Audio Package Manager CLI",
   "main": "server.js",
   "scripts": {
@@ -19,9 +19,9 @@
     "github": "latest"
   },
   "devDependencies": {
-    "request" : "latest",
-    "chai" : "latest",
-    "mocha" : "latest"
+    "request": "latest",
+    "chai": "latest",
+    "mocha": "latest"
   },
   "engines": {
     "node": "0.8.x"
