@@ -4,7 +4,8 @@
   "description": "Web Audio Package Manager CLI",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git"
@@ -14,6 +15,11 @@
     "express": "latest",
     "mongoose": "latest",
     "request-extend": "latest"
+  },
+  "devDependencies": {
+    "request" : "latest",
+    "chai" : "latest",
+    "mocha" : "latest"
   },
   "engines": {
     "node": "0.8.x"

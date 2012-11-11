@@ -1,0 +1,11 @@
+{
+  "name" : "simple-delay",
+  "description" : "A simple delay",
+  "repo" : "http://github.com/wapm/simple-delay",
+  "keywords" : [
+    "chorus",
+    "reverb",
+    "delay"
+  ],
+  "script" : "simple-delay.js"
+}
