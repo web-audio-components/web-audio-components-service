@@ -2,7 +2,7 @@ var _ = require( 'underscore' );
 
 module.exports = function ( mongoose ) {
   var Packages = new mongoose.Schema({
-    name : { type: String, required: true, unique: true, index: true, lowercase: true },
+    name : { type: String, required: true, index : { unique: true }, lowercase: true },
     repo : { type: String, required: true },
     script : { type: String, required: true },
     scriptFile : { type: Buffer, require: true },
