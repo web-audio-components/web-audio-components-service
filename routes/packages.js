@@ -15,16 +15,25 @@ exports.index = function ( req, res, next ) {
 // POST /packages
 exports.create = function ( req, res, next ) {
   var pkg = new req.models.Packages( req.body );
-  github.getContent( pkg, pkg.script, function ( err, response, body ) {
-    if ( err || !body || !body.content ) { handleError( err, next ); }
-    pkg.scriptFile = github.base64ToBuffer( body.content );
-    pkg.save(function ( err ) {
-      if ( !err ) {
-        res.json({ success: true, message: 'Package added' });
-      } else {
-        handleError( err, next );
-      }
-    });
+  pkg.validateWithoutScript(function ( err ) {
+    if ( !err ) {
+      github.getContent( pkg, pkg.script, function ( err, response, body ) {
+        if ( err || !body || !body.content ) {
+          handleError( err, next );
+        } else {
+          pkg.scriptFile = github.base64ToBuffer( body.content );
+          pkg.save(function ( err ) {
+            if ( !err ) {
+              res.json({ success: true, message: 'Package added' });
+            } else {
+              handleError( err, next );
+            }
+          });
+        }
+      });
+    } else {
+      handleError( err, next );
+    }
   });
 };
 
