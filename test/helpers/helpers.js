@@ -1,5 +1,5 @@
 var request = require( 'request' );
-var config = require( '../../config' ).test;
+var config = require( '../../config' );
 
 exports.postManifest = function ( manifest, callback ) {
   var options = {

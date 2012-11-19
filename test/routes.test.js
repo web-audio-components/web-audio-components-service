@@ -2,7 +2,7 @@ process.env.NODE_ENV = 'test';
 var
   service = require( '../server' ),
   mongoose = require( 'mongoose' ),
-  config = require( '../config' ).test,
+  config = require( '../config' ),
   helpers = require( './helpers/helpers' ),
   chai    = require( 'chai' ),
   should  = chai.should(),
@@ -11,6 +11,7 @@ var
   getPackage = helpers.getPackage,
   searchPackages = helpers.searchPackages,
   db, models;
+console.log(config);
 
 // Clear out test database before start
 before(function ( done ) {
@@ -132,6 +133,7 @@ describe( 'GET /packages', function () {
     });
   });
 
+  // TODO
   it( 'returns available packages in alphabetical order', function ( done ) {
     done();
   });
