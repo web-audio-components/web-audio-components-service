@@ -2,7 +2,7 @@ var
   express = require( 'express' ),
   mongoose = require( 'mongoose' ),
   reqExtend = require( 'request-extend' ),
-  config = require( './config' )[ process.env.NODE_ENV || 'development' ],
+  config = require( './config' );
   app = express();
 
 var
@@ -18,6 +18,6 @@ require( './router' )( app );
 
 app.listen( config.port );
 
-console.log( 'WAPM listening on port ' + app.port );
+console.log( 'WAPM listening on port ' + config.port );
 
 module.exports = app;
