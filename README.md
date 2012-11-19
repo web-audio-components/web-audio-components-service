@@ -7,5 +7,5 @@ wapm-service
 
 ## Todo
 
-* Query GitHub once an hour to update DB with updated manifests, last updated, star count?
+* Task manager to update packages periodically with watcher count, updated scripts, update keywords, descriptions
 
