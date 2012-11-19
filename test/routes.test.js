@@ -133,6 +133,15 @@ describe( 'GET /packages', function () {
     });
   });
 
+  it( 'does not include scriptFile and other mongoose properties', function ( done ) {
+    getPackage(function ( err, res, body ) {
+      expect( body[ 0 ]._id ).to.be.falsey;
+      expect( body[ 0 ].__v ).to.be.falsey;
+      expect( body[ 0 ].scriptFile ).to.be.falsey;
+      done();
+    });
+  });
+
   // TODO
   it( 'returns available packages in alphabetical order', function ( done ) {
     done();
@@ -142,6 +151,22 @@ describe( 'GET /packages', function () {
 
 describe( 'GET /packages/:name', function () {
 
+  it( 'returns one package of the correct name', function ( done ) {
+    getPackage( 'simple-reverb', function ( err, res, body ) {
+      body.name.should.equal( 'simple-reverb' );
+      body.repo.should.equal( 'wapm/simple-reverb' );
+      done();
+    });
+  });
+
+  it( 'does not include scriptFile and other mongoose properties', function ( done ) {
+    getPackage( 'simple-reverb', function ( err, res, body ) {
+      expect( body._id ).to.be.falsey;
+      expect( body.__v ).to.be.falsey;
+      expect( body.scriptFile ).to.be.falsey;
+      done();
+    });
+  });
 });
 
 describe( 'GET /packages/search/:name', function () {
@@ -177,6 +202,15 @@ describe( 'GET /packages/search/:name', function () {
       expect( !!err ).to.be.equal( false );
       body.should.have.length( 1 );
       body[ 0 ].name.should.equal( 'simple-delay' );
+      done();
+    });
+  });
+
+  it( 'does not include scriptFile and other mongoose properties', function ( done ) {
+    getPackage(function ( err, res, body ) {
+      expect( body[ 0 ]._id ).to.be.falsey;
+      expect( body[ 0 ].__v ).to.be.falsey;
+      expect( body[ 0 ].scriptFile ).to.be.falsey;
       done();
     });
   });

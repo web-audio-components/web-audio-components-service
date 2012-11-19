@@ -1,9 +1,13 @@
-var handleError = require( '../lib/handleError' );
-var github = require( '../lib/github' );
+var
+  handleError = require( '../lib/handleError' ),
+  github = require( '../lib/github' );
+
+var
+  RETURN_FIELDS = 'name repo script description keywords updated instrument effect';
 
 // GET /packages
 exports.index = function ( req, res, next ) {
-  req.models.Packages.find( {}, function ( err, packages ) {
+  req.models.Packages.find( {}, RETURN_FIELDS, function ( err, packages ) {
     if ( !err ) {
       res.json( packages );
     } else {
@@ -39,7 +43,7 @@ exports.create = function ( req, res, next ) {
 
 // GET /packages/:name
 exports.show = function ( req, res, next ) {
-  req.models.Packages.findOne({ name: req.params.name }, function ( err, pkg ) {
+  req.models.Packages.findOne({ name: req.params.name }, RETURN_FIELDS, function ( err, pkg ) {
     if ( !err ) {
       res.json( pkg ? pkg : {}); 
     } else {
@@ -50,7 +54,7 @@ exports.show = function ( req, res, next ) {
 
 // GET /packages/search/:name
 exports.search = function ( req, res, next ) {
-  req.models.Packages.search( req.params.name, function ( err, packages ) {
+  req.models.Packages.search( req.params.name, RETURN_FIELDS, function ( err, packages ) {
     if ( !err ) {
       res.json( packages );
     } else {
@@ -61,7 +65,7 @@ exports.search = function ( req, res, next ) {
 
 // GET /packages/:name/script.js
 exports.getScript = function ( req, res, next ) {
-  req.models.Packages.findOne({ name: req.params.name }, function ( err, pkg ) {
+  req.models.Packages.findOne({ name: req.params.name }, 'scriptFile', function ( err, pkg ) {
     if ( !err ) {
       res.send( pkg.scriptFile );
     } else {
