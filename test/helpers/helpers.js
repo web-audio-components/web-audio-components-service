@@ -4,7 +4,7 @@ var config = require( '../../config' );
 exports.postManifest = function ( manifest, callback ) {
   var options = {
     uri: 'http://localhost:' + config.port + '/packages',
-    timeout: 3000,
+    timeout: 8000,
     form: require( '../manifests/' + manifest + '.json' ),
     json: true
   };

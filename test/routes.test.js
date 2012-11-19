@@ -11,7 +11,6 @@ var
   getPackage = helpers.getPackage,
   searchPackages = helpers.searchPackages,
   db, models;
-console.log(config);
 
 // Clear out test database before start
 before(function ( done ) {
@@ -33,6 +32,7 @@ after(function ( done ) {
 //
 
 describe( 'POST /packages', function () {
+
   it( 'rejects manifests without a name', function ( done ) {
     postManifest( 'no-name', function ( err, res, body ) {
       validatorError( err, res, body, done );
@@ -90,7 +90,7 @@ describe( 'POST /packages', function () {
 
   it( 'rejects manifests that don\'t have a valid github repo', function ( done ) {
     postManifest( 'invalid-repo', function ( err, res, body ) {
-      validatorError( err, res, body, done );
+      invalidRepoError( err, res, body, done );
     });
   });
 
@@ -116,7 +116,7 @@ describe( 'POST /packages', function () {
   // TODO probably should return a 400 with a better message!!
   it( 'rejects a manifest with the same name as an existing one', function ( done ) {
     postManifest( 'valid-simple-reverb', function ( err, res, body ) {
-      res.statusCode.should.equal( 500 );
+      res.statusCode.should.equal( 400 );
       body.error.should.contain( 'duplicate' );
       done();
     });
@@ -182,8 +182,14 @@ describe( 'GET /packages/search/:name', function () {
   });
 });
 
+function invalidRepoError ( err, res, body, done ) {
+  res.statusCode.should.equal( 400 );
+  body.error.should.match(/ENOENT/);
+  done();
+}
+
 function validatorError ( err, res, body, done ) {
   res.statusCode.should.equal( 400 );
-  body.error.should.contain( 'ValidatorError' );
+  body.error.should.match(/ValidatorError/);
   done();
 }
