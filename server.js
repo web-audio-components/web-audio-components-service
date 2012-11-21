@@ -21,6 +21,8 @@ app.listen( config.port );
 console.log( 'WAPM listening on port ' + config.port );
 
 // Seed
-require( './lib/seed' );
+if ( process.env.NODE_ENV !== 'test' ) {
+  require( './lib/seed' );
+}
 
 module.exports = app;
