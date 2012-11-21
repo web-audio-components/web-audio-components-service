@@ -2,12 +2,10 @@ var
   express = require( 'express' ),
   mongoose = require( 'mongoose' ),
   reqExtend = require( 'request-extend' ),
-  config = require( './config' );
-  app = express();
-
-var
+  config = require( './config' ),
   db = mongoose.connect( config.db.URL ),
-  models = require( './models' )({ mongoose: mongoose, db: db });
+  app = express(),
+  models = require( './models' );
 
 app
   .use( express.bodyParser() )
@@ -19,8 +17,5 @@ require( './router' )( app );
 app.listen( config.port );
 
 console.log( 'WAPM listening on port ' + config.port );
-
-// Seed
-require( './lib/seed' );
 
 module.exports = app;

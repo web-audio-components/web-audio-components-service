@@ -15,7 +15,7 @@ var
 // Clear out test database before start
 before(function ( done ) {
   db = mongoose.connection;
-  models = require( '../models' )({ mongoose: mongoose, db: db });
+  models = require( '../models' );
   models.Packages.find( {} ).remove(function ( err, pkg ) {
     if ( !err ) { done(); }
   });

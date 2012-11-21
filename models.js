@@ -1,9 +1,7 @@
-module.exports = function ( o ) {
-  var
-    mongoose = o.mongoose,
-    db = o.db;
-
-  return {
-    'Packages' : db.model( 'Packages', require( './models/packages' )( mongoose ))
-  }
-}
+var
+  mongoose = require( 'mongoose' );
+  db = mongoose.connection;
+ 
+module.exports = {
+  'Packages' : db.model( 'Packages', require( './models/packages' )( mongoose ))
+};
