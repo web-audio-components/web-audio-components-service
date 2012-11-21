@@ -20,4 +20,7 @@ app.listen( config.port );
 
 console.log( 'WAPM listening on port ' + config.port );
 
+// Seed
+require( './lib/seed' );
+
 module.exports = app;
