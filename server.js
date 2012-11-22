@@ -18,4 +18,8 @@ app.listen( config.port );
 
 console.log( 'WAPM listening on port ' + config.port );
 
+if ( process.env.NODE_ENV !== 'test' ) {
+  require( './lib/taskManager' );
+}
+
 module.exports = app;
