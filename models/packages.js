@@ -9,6 +9,7 @@ module.exports = function ( mongoose ) {
     description : { type: String, required: true },
     keywords : { type: Array },
     updated : { type: Date, default: Date.now, set: isoToDate },
+    watchers : { type: Number, default: 0 },
 
     // Not yet implemented
     ui : { type: Boolean },
