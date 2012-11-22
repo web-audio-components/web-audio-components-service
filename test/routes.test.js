@@ -4,6 +4,8 @@ var
   mongoose = require( 'mongoose' ),
   config = require( '../config' ),
   helpers = require( './helpers/helpers' ),
+  curry = require( 'curry' ),
+  async = require( 'async' ),
   chai    = require( 'chai' ),
   should  = chai.should(),
   expect  = chai.expect,
@@ -16,13 +18,13 @@ var
 before(function ( done ) {
   db = mongoose.connection;
   models = require( '../models' );
-  models.Packages.find( {} ).remove(function ( err, pkg ) {
+  models.Packages.find({ name: /simple/ }).remove(function ( err, pkg ) {
     if ( !err ) { done(); }
   });
 });
 
 after(function ( done ) {
-  models.Packages.find( {} ).remove(function ( err, pkg ) {
+  models.Packages.find({ name: /simple/ }).remove(function ( err, pkg ) {
     if ( !err ) { done(); }
   });
 });
@@ -95,22 +97,14 @@ describe( 'POST /packages', function () {
   });
 
   it( 'adds valid packages to the repo', function ( done ) {
-    var count = 0;
-    postManifest( 'valid-simple-reverb', function ( err, res, body ) {
-      res.statusCode.should.equal( 200 );
-      doneCount();
+    async.parallel([
+      curry([ 'valid-simple-reverb' ], postManifestSuccess ),
+      curry([ 'valid-simple-gain' ], postManifestSuccess ),
+      curry([ 'valid-simple-delay' ], postManifestSuccess )
+    ], function ( err ) {
+      helpers.isSeeded = true;
+      done();
     });
-    postManifest( 'valid-simple-gain', function ( err, res, body ) {
-      res.statusCode.should.equal( 200 );
-      doneCount();
-    });
-    postManifest( 'valid-simple-delay', function ( err, res, body ) {
-      res.statusCode.should.equal( 200 );
-      doneCount();
-    });
-
-    // TODO use async module
-    function doneCount () { count++; if ( count === 3 ) { done(); } }
   });
 
   // TODO probably should return a 400 with a better message!!
@@ -128,7 +122,8 @@ describe( 'GET /packages', function () {
   it( 'returns all available packages', function ( done ) {
     getPackage(function ( err, res, body ) {
       expect( err ).to.be.falsey;
-      body.should.have.length( 3 );
+      // Should return atleast 3 packages
+      body.length.should.be.above( 2 );
       done();
     });
   });
@@ -226,4 +221,11 @@ function validatorError ( err, res, body, done ) {
   res.statusCode.should.equal( 400 );
   body.error.should.match(/ValidatorError/);
   done();
+}
+
+function postManifestSuccess ( manifest, callback ) {
+  postManifest( manifest, function ( err, res, body ) {
+    res.statusCode.should.equal( 200 );
+    callback();
+  });
 }
