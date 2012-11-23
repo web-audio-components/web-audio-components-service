@@ -1,4 +1,6 @@
+process.env.NODE_ENV = 'test';
 var
+  service = require( '../server' ),
   async = require( 'async' ),
   curry = require( 'curry' ),
   _ = require( 'underscore' ),
@@ -22,7 +24,8 @@ before(function ( done ) {
   console.log('before updateTask');
   models = require( '../models' );
   console.log('querying updateTask');
-  models.Packages.find({ name: /update/ }).remove(function ( err, pkg ) {
+  //models.Packages.find({ name: /update/ }).remove(function ( err, pkg ) {
+  models.Packages.find({}).remove(function ( err, pkg ) {
     console.log('response updateTask');
     async.parallel([
       curry([ 'update-test-module-1' ], postManifest ),
