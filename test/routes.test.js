@@ -20,12 +20,14 @@ before(function ( done ) {
   models = require( '../models' );
   models.Packages.find({ name: /simple/ }).remove(function ( err, pkg ) {
     if ( !err ) { done(); }
+    else { console.log( err ); }
   });
 });
 
 after(function ( done ) {
   models.Packages.find({ name: /simple/ }).remove(function ( err, pkg ) {
     if ( !err ) { done(); }
+    else { console.log( err ); }
   });
 });
 
@@ -138,9 +140,7 @@ describe( 'GET /packages', function () {
   });
 
   // TODO
-  it( 'returns available packages in alphabetical order', function ( done ) {
-    done();
-  });
+  it( 'returns available packages in alphabetical order' );
 });
 
 

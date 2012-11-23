@@ -36,6 +36,7 @@ before(function ( done ) {
 after(function ( done ) {
   models.Packages.find({ name: /update/ }).remove(function ( err, pkg ) {
     if ( !err ) { done(); }
+    else { console.log( err ); }
   });
 });
 
