@@ -18,6 +18,7 @@ var
 
 // Clear out test database before start
 before(function ( done ) {
+  this.timeout(10000);
   console.log('before updateTask');
   models = require( '../models' );
   console.log('querying updateTask');

@@ -16,6 +16,7 @@ var
 
 // Clear out test database before start
 before(function ( done ) {
+  this.timeout(10000);
   console.log('Running before');
   db = mongoose.connection;
   models = require( '../models' );
