@@ -16,9 +16,13 @@ var
 
 // Clear out test database before start
 before(function ( done ) {
+  console.log('Running before');
   db = mongoose.connection;
   models = require( '../models' );
+  console.log('models', models);
   models.Packages.find({ name: /simple/ }).remove(function ( err, pkg ) {
+    console.log('response');
+    console.log(err, pkg);
     if ( !err ) { done(); }
     else { console.log( err ); }
   });
