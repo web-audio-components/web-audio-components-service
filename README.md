@@ -7,5 +7,4 @@ wapm-service
 
 ## Todo
 
-* Task manager to update packages periodically with watcher count, updated scripts, update keywords, descriptions
 
