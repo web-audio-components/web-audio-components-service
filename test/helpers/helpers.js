@@ -36,3 +36,12 @@ exports.searchPackages = function ( query, callback ) {
 
   request.get( options, callback );
 };
+
+exports.getScript = function ( pkg, callback ) {
+  var options = {
+    uri: 'http://localhost:' + config.port + '/packages/' + pkg + '/script.js',
+    timeout: 3000
+  };
+
+  request.get( options, callback );
+};
