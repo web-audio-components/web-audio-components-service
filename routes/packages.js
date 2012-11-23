@@ -1,9 +1,13 @@
 var
   handleError = require( '../lib/handleError' ),
-  github = require( '../lib/github' );
+  github = require( '../lib/github' ),
+  utils = require( '../lib/utils' );
 
 var
-  RETURN_FIELDS = 'name repo script description keywords updated instrument effect';
+  RETURN_FIELDS = [
+    'name', 'repo', 'script', 'description', 'watchers',
+    'keywords', 'updated', 'instrument', 'effect'
+  ].join(' ');
 
 // GET /packages
 exports.index = function ( req, res, next ) {
@@ -25,7 +29,7 @@ exports.create = function ( req, res, next ) {
         if ( err || !body || !body.content ) {
           handleError( err, next );
         } else {
-          pkg.scriptFile = github.base64ToBuffer( body.content );
+          pkg.scriptFile = utils.base64ToBuffer( body.content );
           pkg.save(function ( err ) {
             if ( !err ) {
               res.json({ success: true, message: 'Package added' });

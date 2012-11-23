@@ -2,12 +2,10 @@ var
   express = require( 'express' ),
   mongoose = require( 'mongoose' ),
   reqExtend = require( 'request-extend' ),
-  config = require( './config' );
-  app = express();
-
-var
+  config = require( './config' ),
   db = mongoose.connect( config.db.URL ),
-  models = require( './models' )({ mongoose: mongoose, db: db });
+  app = express(),
+  models = require( './models' );
 
 app
   .use( express.bodyParser() )
@@ -20,9 +18,10 @@ app.listen( config.port );
 
 console.log( 'WAPM listening on port ' + config.port );
 
-// Seed
+// Seed, run task manager when not testing
 if ( process.env.NODE_ENV !== 'test' ) {
   require( './lib/seed' );
+  require( './lib/taskManager' );
 }
 
 module.exports = app;

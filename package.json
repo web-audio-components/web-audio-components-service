@@ -17,7 +17,9 @@
     "request-extend": "latest",
     "node-schedule": "latest",
     "github": "latest",
-    "request": "latest"
+    "request": "latest",
+    "curry": "latest",
+    "async" : "latest"
   },
   "devDependencies": {
     "chai": "latest",
