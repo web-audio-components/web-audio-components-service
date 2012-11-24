@@ -21,21 +21,16 @@ var
 // Clear out test database before start
 before(function ( done ) {
   this.timeout(10000);
-  console.log('before updateTask');
   models = require( '../models' );
-  console.log('querying updateTask');
   //models.Packages.find({ name: /update/ }).remove(function ( err, pkg ) {
   models.Packages.find({}).remove(function ( err, pkg ) {
-    console.log('response updateTask');
     async.parallel([
       curry([ 'update-test-module-1' ], postManifest ),
       curry([ 'update-test-module-2' ], postManifest ),
       curry([ 'update-test-module-3' ], postManifest )
     ], function ( err ) {
-      console.log('finish async updateTask');
       // After test modules submitted, run update task
       updateTask(function () {
-        console.log('tasks updated');
         done();
       });
     });
