@@ -1,4 +1,8 @@
-var config = {
+var
+  env = process.env.NODE_ENV,
+  config;
+
+config = {
   production : {
     db : {
       URL : process.env['wapm_service_mongodb_url']
@@ -25,4 +29,7 @@ var config = {
   } 
 };
 
-module.exports = config[ process.env.NODE_ENV || 'development' ];
+config = config[ env || 'development' ];
+config.isTest = env === 'test';
+
+module.exports = config;
