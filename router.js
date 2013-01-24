@@ -11,9 +11,10 @@ module.exports = function (app) {
 
   app.get('/components', components.index);
   app.post('/components', components.create);
-  app.get('/components/:name', components.show);
-  app.get('/components/search/:name', components.search);
-  app.get('/components/:name/script.js', components.getScript);
+  app.get('/components/:repo', components.show);
+  app.get('/components/search/:query', components.search);
+  app.get('/components/:repo/script.js', components.getScript);
+  app.get('/components/:repo/build.js', components.getBuild);
 
   app.use(function (err, req, res, next) {
     res.send(err.code || 500, { error: err.message });
