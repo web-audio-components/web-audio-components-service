@@ -19,10 +19,13 @@ var Component = new mongoose.Schema({
   build: { type: Buffer, required: true },
   updated : { type: Date, default: Date.now, set: isoToDate },
 
-  // Not yet implemented
-  ui : { type: Boolean },
+  // Component types
   instrument : { type: Boolean },
-  effect : { type: Boolean }
+  effect : { type: Boolean },
+  tool : { type: Boolean },
+  
+  // Not yet implemented
+  ui : { type: Boolean }
 });
 
 // TODO More efficient querying???
