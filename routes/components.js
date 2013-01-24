@@ -14,9 +14,11 @@ var
   ].join(' ');
 
 // GET /components
+// GET /components/?=query
 exports.index = function (req, res, next) {
-  Component.find({}, RETURN_FIELDS, function (err, components) {
-    if ( !err ) {
+  var query = req.query.q;
+  Component[query ? 'search' : 'find'](query || {}, RETURN_FIELDS, function (err, components) {
+    if (!err) {
       res.json(components);
     } else {
       handleError(err, next);
@@ -30,17 +32,6 @@ exports.show = function (req, res, next) {
   Component.findOne({ repo: name }, RETURN_FIELDS, function (err, pkg) {
     if (!err) {
       res.json(pkg ? pkg : {}); 
-    } else {
-      handleError(err, next);
-    }
-  });
-};
-
-// GET /components/search/:query
-exports.search = function (req, res, next) {
-  Component.search(req.params.query, RETURN_FIELDS, function (err, components) {
-    if (!err) {
-      res.json(components);
     } else {
       handleError(err, next);
     }
