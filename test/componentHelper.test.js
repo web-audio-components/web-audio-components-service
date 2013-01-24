@@ -8,13 +8,13 @@ var
   config     = require('../config'),
   installDir = config.componentInstallDir,
   buildDir   = config.componentBuildDir,
+  utils      = require('../lib/utils'),
   clear      = require('./helpers/clear'),
   helper     = require('../lib/componentHelper');
 
 var
-  overdrive = require(installDir + '/web-audio-components/overdrive/component.json'),
-  delay     = require(installDir + '/web-audio-components/delay/component.json');
-
+  overdrive = require(installDir + '/web-audio-components-overdrive/component.json'),
+  delay     = require(installDir + '/web-audio-components-delay/component.json');
 
 describe('Component Helper', function () {
 
@@ -34,8 +34,9 @@ describe('Component Helper', function () {
   describe('Build', function () {
     it('should build component to build directory', function (done) {
       helper.build(delay, function (err) {
+        var build = utils.getBuildScriptPath(delay.repo);
         expect(err).to.not.be.ok;
-        fs.stat(buildDir + '/' + delay.repo + '/' + 'build.js', function (err, stats) {
+        fs.stat(build, function (err, stats) {
           expect(stats.size).to.equal(3222);
           done();
         });

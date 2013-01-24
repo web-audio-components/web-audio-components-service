@@ -9,14 +9,15 @@ var
   config     = require('../config'),
   installDir = config.componentInstallDir,
   buildDir   = config.componentBuildDir,
+  utils      = require('../lib/utils'),
   update     = require('../lib/updateModel'),
   cHelper    = require('../lib/componentHelper'),
   Component  = require('../models').Component,
   clear      = require('./helpers/clear');
 
 var
-  overdrive = require(installDir + '/web-audio-components/overdrive/component.json'),
-  delay     = require(installDir + '/web-audio-components/delay/component.json');
+  overdrive = require(installDir + '/web-audio-components-overdrive/component.json'),
+  delay     = require(installDir + '/web-audio-components-delay/component.json');
 
 describe('Update Model', function () {
   beforeEach(clear);
@@ -52,7 +53,7 @@ describe('Update Model', function () {
     update(model, overdrive, function (err) {
       Component.findOne({ name: 'overdrive' }, function (err, comp) {
         expect(err).to.not.be.ok;
-        fs.stat(buildDir + '/' + comp.repo + '/' + 'build.js', function (err, stats) {
+        fs.stat(utils.getBuildScriptPath(comp.repo), function (err, stats) {
           expect(stats.size).to.equal(2257);
           done();
         });

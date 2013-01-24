@@ -93,7 +93,7 @@ describe('Routes', function () {
     it('returns the script', function (done) {
       api.getScript('web-audio-components/delay', function (err, res, body) {
         expect(err).to.not.be.ok;
-        fs.readFile(installDir + '/web-audio-components/delay/index.js', 'utf-8', function (err, data) {
+        fs.readFile(installDir + '/web-audio-components-delay/index.js', 'utf-8', function (err, data) {
           expect(body).to.equal(data);
           done();
         });
@@ -105,7 +105,7 @@ describe('Routes', function () {
     it('returns the built script', function (done) {
       api.getBuild('web-audio-components/delay', function (err, res, body) {
         expect(err).to.not.be.ok;
-        fs.readFile(buildDir + '/web-audio-components/delay/build.js', 'utf-8', function (err, data) {
+        fs.readFile(buildDir + '/web-audio-components-delay/build.js', 'utf-8', function (err, data) {
           expect(body).to.equal(data);
           done();
         });

@@ -2,8 +2,7 @@ var
   fs          = require('fs'),
   Component   = require('../models').Component,
   config      = require('../config'),
-  buildDir    = config.componentBuildDir,
-  installDir  = config.componentInstallDir,
+  utils       = require('../lib/utils'),
   handleError = require('../lib/handleError');
 
 var
@@ -41,10 +40,12 @@ exports.show = function (req, res, next) {
 
 // GET /components/:owner/:name/script.js
 exports.getScript = function (req, res, next) {
-  var name = req.params.owner + '/' + req.params.name;
-  Component.findOne({ repo: name }, 'main', function (err, pkg) {
+  var
+    repo = req.params.owner + '/' + req.params.name,
+    path = utils.getInstallDir(repo);
+  Component.findOne({ repo: repo }, 'main', function (err, pkg) {
     if (!err) {
-      fs.readFile(installDir + '/' + name + '/' + pkg.main, function (err, buffer) {
+      fs.readFile(path + pkg.main, function (err, buffer) {
         if (!err) {
           res.send(buffer);
         } else {
@@ -59,8 +60,8 @@ exports.getScript = function (req, res, next) {
 
 // GET /components/:owner/:name/build.js
 exports.getBuild = function (req, res, next) {
-  var name = req.params.owner + '/' + req.params.name;
-  fs.readFile(buildDir + '/' + name + '/' + 'build.js', function (err, buffer) {
+  var repo = req.params.owner + '/' + req.params.name;
+  fs.readFile(utils.getBuildScriptPath(repo), function (err, buffer) {
     if (!err) {
       res.send(buffer);
     } else {
