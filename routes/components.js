@@ -1,5 +1,6 @@
 var
   fs          = require('fs'),
+  Component   = require('../models').Component,
   config      = require('../config'),
   buildDir    = config.componentBuildDir,
   installDir  = config.componentInstallDir,
@@ -22,9 +23,10 @@ exports.index = function (req, res, next) {
   });
 };
 
-// GET /components/:repo
+// GET /components/:owner/:name
 exports.show = function (req, res, next) {
-  Component.findOne({ repo: req.params.repo }, RETURN_FIELDS, function (err, pkg) {
+  var name = req.params.owner + '/' + req.params.name;
+  Component.findOne({ repo: name }, RETURN_FIELDS, function (err, pkg) {
     if (!err) {
       res.json(pkg ? pkg : {}); 
     } else {
@@ -44,9 +46,10 @@ exports.search = function (req, res, next) {
   });
 };
 
-// GET /components/:repo/script.js
+// GET /components/:owner/:name/script.js
 exports.getScript = function (req, res, next) {
-  Component.findOne({ repo: req.params.repo }, 'main', function (err, pkg) {
+  var name = req.params.owner + '/' + req.params.name;
+  Component.findOne({ repo: name }, 'main', function (err, pkg) {
     if (!err) {
       fs.readFile(installDir + '/' + pkg.repo + '/' + pkg.main, function (err, buffer) {
         if (!err) {
@@ -61,9 +64,10 @@ exports.getScript = function (req, res, next) {
   });
 };
 
-// GET /components/:repo/build.js
+// GET /components/:owner/:name/build.js
 exports.getBuild = function (req, res, next) {
-  fs.readFile(buildDir + '/' + req.params.repo + '/' + 'build.js', function (err, buffer) {
+  var name = req.params.owner + '/' + req.params.name;
+  fs.readFile(buildDir + '/' + name + '/' + 'build.js', function (err, buffer) {
     if (!err) {
       res.send(buffer);
     } else {

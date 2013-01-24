@@ -10,11 +10,10 @@ module.exports = function (app) {
   });
 
   app.get('/components', components.index);
-  app.post('/components', components.create);
-  app.get('/components/:repo', components.show);
+  app.get('/components/:owner/:name', components.show);
   app.get('/components/search/:query', components.search);
-  app.get('/components/:repo/script.js', components.getScript);
-  app.get('/components/:repo/build.js', components.getBuild);
+  app.get('/components/:owner/:name/script.js', components.getScript);
+  app.get('/components/:owner/:name/build.js', components.getBuild);
 
   app.use(function (err, req, res, next) {
     res.send(err.code || 500, { error: err.message });
