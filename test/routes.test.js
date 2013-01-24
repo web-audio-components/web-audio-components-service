@@ -33,14 +33,6 @@ describe('Routes', function () {
       });
     });
 
-    it('does not include mongoose properties', function (done) {
-      api.get(function ( err, res, body ) {
-        expect(body[ 0 ]._id).to.not.be.ok;
-        expect(body[ 0 ].__v).to.not.be.ok;
-        done();
-      });
-    });
-
     // TODO
     it('returns available components in alphabetical order');
   });
@@ -51,14 +43,6 @@ describe('Routes', function () {
       api.get('web-audio-components/overdrive', function (err, res, body) {
         body.name.should.equal('overdrive');
         body.repo.should.equal('web-audio-components/overdrive');
-        done();
-      });
-    });
-
-    it('does not include mongoose properties', function (done) {
-      api.get('web-audio-components/overdrive', function (err, res, body) {
-        expect(body._id).to.not.be.ok;
-        expect(body.__v).to.not.be.ok;
         done();
       });
     });
@@ -97,14 +81,6 @@ describe('Routes', function () {
         expect(err).to.not.be.ok;
         body.should.have.length(1);
         body[0].name.should.equal('comb');
-        done();
-      });
-    });
-
-    it('does not include mongoose properties', function (done) {
-      api.search('feedback', function ( err, res, body ) {
-        expect(body[0]._id).to.not.be.ok;
-        expect(body[0].__v).to.not.be.ok;
         done();
       });
     });
