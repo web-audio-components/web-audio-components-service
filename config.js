@@ -26,7 +26,7 @@ config = {
       URL : 'mongodb://localhost:27017/wac-service-test'
     },
     componentsURL : 'http://localhost:8000/mock/registry',
-    componentInstallDir : __dirname + '/test/components',
+    componentInstallDir : __dirname + '/mocks/components',
     componentBuildDir : __dirname + '/test/build',
     port : 8000
   } 

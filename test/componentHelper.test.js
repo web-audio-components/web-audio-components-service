@@ -12,8 +12,8 @@ var
   helper     = require('../lib/componentHelper');
 
 var
-  overdrive = require('./components/web-audio-components/overdrive/component.json'),
-  delay     = require('./components/web-audio-components/delay/component.json');
+  overdrive = require(installDir + '/web-audio-components/overdrive/component.json'),
+  delay     = require(installDir + '/web-audio-components/delay/component.json');
 
 before(clear);
 after(clear);

@@ -1,21 +1,22 @@
 process.env.NODE_ENV = 'test';
 
 var
-  chai      = require('chai'),
-  should    = chai.should(),
-  expect    = chai.expect,
-  service   = require('../server'),
-  fs        = require('fs'),
-  config    = require('../config'),
-  buildDir  = config.componentBuildDir,
-  update    = require('../lib/updateModel'),
-  cHelper   = require('../lib/componentHelper'),
-  Component = require('../models').Component,
-  clear     = require('./helpers/clear');
+  chai       = require('chai'),
+  should     = chai.should(),
+  expect     = chai.expect,
+  service    = require('../server'),
+  fs         = require('fs'),
+  config     = require('../config'),
+  installDir = config.componentInstallDir,
+  buildDir   = config.componentBuildDir,
+  update     = require('../lib/updateModel'),
+  cHelper    = require('../lib/componentHelper'),
+  Component  = require('../models').Component,
+  clear      = require('./helpers/clear');
 
 var
-  overdrive = require('./components/web-audio-components/overdrive/component.json'),
-  delay     = require('./components/web-audio-components/delay/component.json');
+  overdrive = require(installDir + '/web-audio-components/overdrive/component.json'),
+  delay     = require(installDir + '/web-audio-components/delay/component.json');
 
 before(clear);
 after(clear);
