@@ -5,35 +5,29 @@ var
 config = {
   production : {
     db : {
-      URL : process.env['wapm_service_mongodb_url']
+      URL : process.env['wac_service_mongodb_url']
     },
+    componentsURL : 'http://50.116.26.197/components/all',
     componentInstallDir : __dirname + '/components',
     componentBuildDir : __dirname + '/build',
-    componentsURL : 'http://50.116.26.197/components/all',
-    github_client_id : process.env['wapm_github_client_id'],
-    github_client_secret : process.env['wapm_github_client_secret'],
     port : 80
   },
   development : {
     db : {
-      URL : 'mongodb://localhost:27017/wapm-service'
+      URL : 'mongodb://localhost:27017/wac-service'
     },
     componentsURL : 'http://50.116.26.197/components/all',
     componentInstallDir : __dirname + '/components',
     componentBuildDir : __dirname + '/build',
-    github_client_id : process.env['wapm_github_client_id'],
-    github_client_secret : process.env['wapm_github_client_secret'],
     port : 8000
   },
   test : {
     db : {
-      URL : 'mongodb://localhost:27017/wapm-service-test'
+      URL : 'mongodb://localhost:27017/wac-service-test'
     },
     componentsURL : 'http://localhost:8000/mock/registry',
     componentInstallDir : __dirname + '/test/components',
     componentBuildDir : __dirname + '/test/build',
-    github_client_id : process.env['wapm_github_client_id'],
-    github_client_secret : process.env['wapm_github_client_secret'],
     port : 8000
   } 
 };
