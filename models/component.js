@@ -13,6 +13,8 @@ var Component = new mongoose.Schema({
   main : { type: String, default: 'index.js' },
   scripts : { type: Array, required: true },
   dependencies : [ Dependency ],
+  twitter : { type: String },
+  license : { type: String },
 
   stars : { type: Number, default: 0 },
   script : { type: Buffer, require: true },
