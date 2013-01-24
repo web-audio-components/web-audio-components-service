@@ -5,22 +5,18 @@ var
   should     = chai.should(),
   expect     = chai.expect,
   fs         = require('fs'),
-  rimraf     = require('rimraf'),
   config     = require('../config'),
   installDir = config.componentInstallDir,
   buildDir   = config.componentBuildDir,
+  clear      = require('./helpers/clear'),
   helper     = require('../lib/componentHelper');
 
 var
   overdrive = require('./components/web-audio-components/overdrive/component.json'),
   delay     = require('./components/web-audio-components/delay/component.json');
 
-// Clear out test builds
-after(function (done) {
-  rimraf(buildDir, function (err) {
-    done();
-  });
-});
+before(clear);
+after(clear);
 
 describe('Component Helper: Install', function () {
   // Maybe a better way to test implementation rather than use mock?
