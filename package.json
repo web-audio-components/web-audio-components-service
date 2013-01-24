@@ -15,6 +15,7 @@
     "express": "latest",
     "mongoose": "latest",
     "mkdirp": "latest",
+    "rimraf": "latest",
     "node-schedule": "latest",
     "request": "latest",
     "curry": "latest",
