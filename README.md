@@ -1,9 +1,9 @@
-wapm-service
+Web Audio Components Service
 ============
 
-# Web Audio Package Manager Service
+# Web Audio Components Service
 
-[![Build Status](https://travis-ci.org/wapm/wapm-service.png)](https://travis-ci.org/wapm/wapm-service)
+[![Build Status](https://travis-ci.org/web-audio-components/web-audio-components-service.png)](https://travis-ci.org/web-audio-components/web-audio-components-service)
 
 ## Todo
 
