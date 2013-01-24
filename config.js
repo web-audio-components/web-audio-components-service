@@ -30,8 +30,8 @@ config = {
       URL : 'mongodb://localhost:27017/wapm-service-test'
     },
     componentsURL : 'http://localhost:8000/mock/registry',
-    componentInstallDir : 'test-components',
-    componentBuildDir : 'test-build',
+    componentInstallDir : 'test/components',
+    componentBuildDir : 'test/build',
     github_client_id : process.env['wapm_github_client_id'],
     github_client_secret : process.env['wapm_github_client_secret'],
     port : 8000
