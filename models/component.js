@@ -29,10 +29,10 @@ var Component = new mongoose.Schema({
 // TODO Better matching???
 Component.statics.search = function (query, returnFields, callback) {
   this.find({}, returnFields).or([
-      { name : { $regex : query, $options : '-i' }},
-      { keywords : query },
-      { description : { $regex : query, $options : '-i' }}
-      ]).exec(callback);
+    { name : { $regex : query, $options : '-i' }},
+    { keywords : query },
+    { description : { $regex : query, $options : '-i' }}
+    ]).exec(callback);
 };
 
 // Takes an ISO6801 string and converts it to a date object
