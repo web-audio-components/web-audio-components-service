@@ -6,7 +6,7 @@ var
   rimraf    = require('rimraf');
 
 var clear = function clear (done) {
-  this.timeout(2000);
+  this.timeout && this.timeout(2000);
   async.parallel([
     clear.build,
     clear.db
