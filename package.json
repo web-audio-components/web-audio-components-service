@@ -14,6 +14,8 @@
     "underscore": "latest",
     "express": "latest",
     "mongoose": "latest",
+    "component": "latest",
+    "component-builder": "latest",
     "mkdirp": "latest",
     "rimraf": "latest",
     "dive": "latest",
