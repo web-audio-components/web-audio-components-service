@@ -17,7 +17,7 @@ config = {
       URL : 'mongodb://localhost:27017/wac-service'
     },
     componentsURL : 'http://50.116.26.197/components/all',
-    componentInstallDir : __dirname + '/components',
+    componentInstallDir : __dirname + '/mocks/components',
     componentBuildDir : __dirname + '/build',
     port : 8000
   },
