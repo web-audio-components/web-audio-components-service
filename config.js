@@ -1,5 +1,5 @@
 var
-  env = process.env.NODE_ENV,
+  env = process.env.NODE_ENV || 'development',
   config;
 
 config = {
@@ -32,7 +32,11 @@ config = {
   } 
 };
 
-config = config[ env || 'development' ];
+config = config[env];
+
+// Helper environment methods
+config.env = env;
 config.isTest = env === 'test';
+config.isDevelopment = env === 'development';
 
 module.exports = config;
