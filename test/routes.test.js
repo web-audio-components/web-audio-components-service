@@ -1,14 +1,17 @@
 process.env.NODE_ENV = 'test';
 var
-  service = require( '../server' ),
-  api    = require( './helpers/api' ),
-  clear  = require( './helpers/clear' ),
-  async = require( 'async' ),
-  chai    = require( 'chai' ),
-  should  = chai.should(),
-  expect  = chai.expect,
-  seed    = require('../lib/seed');
-
+  service    = require('../server'),
+  fs         = require('fs'),
+  api        = require('./helpers/api'),
+  clear      = require('./helpers/clear'),
+  async      = require('async'),
+  chai       = require('chai'),
+  should     = chai.should(),
+  expect     = chai.expect,
+  seed       = require('../lib/seed'),
+  config     = require('../config'),
+  installDir = config.componentInstallDir,
+  buildDir   = config.componentBuildDir;
 
 describe('Routes', function () {
 
@@ -82,6 +85,30 @@ describe('Routes', function () {
         body.should.have.length(1);
         body[0].name.should.equal('comb');
         done();
+      });
+    });
+  });
+
+  describe('GET /components/:owner/:repo/script.js', function () {
+    it('returns the script', function (done) {
+      api.getScript('web-audio-components/delay', function (err, res, body) {
+        expect(err).to.not.be.ok;
+        fs.readFile(installDir + '/web-audio-components/delay/index.js', 'utf-8', function (err, data) {
+          expect(body).to.equal(data);
+          done();
+        });
+      });
+    });
+  });
+
+  describe('GET /components/:owner/:repo/build.js', function () {
+    it('returns the built script', function (done) {
+      api.getBuild('web-audio-components/delay', function (err, res, body) {
+        expect(err).to.not.be.ok;
+        fs.readFile(buildDir + '/web-audio-components/delay/build.js', 'utf-8', function (err, data) {
+          expect(body).to.equal(data);
+          done();
+        });
       });
     });
   });
