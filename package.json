@@ -1,28 +1,26 @@
 {
-  "name": "wapm-service",
-  "version": "0.1.0-17",
-  "description": "Web Audio Package Manager CLI",
+  "name": "web-audio-components-service",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Web Audio Components Service",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "mocha --reporter spec"
   },
-  "repository": {
-    "type": "git"
-  },
   "dependencies": {
-    "underscore": "latest",
-    "express": "latest",
-    "mongoose": "latest",
-    "component": "latest",
-    "component-builder": "latest",
-    "mkdirp": "latest",
-    "rimraf": "latest",
-    "dive": "latest",
-    "node-schedule": "latest",
-    "request": "latest",
-    "curry": "latest",
-    "async": "latest"
+    "underscore": "1.4.3",
+    "express": "3.0.6",
+    "mongoose": "3.5.4",
+    "component": "0.11.0",
+    "component-builder": "0.6.2",
+    "mkdirp": "0.3.4",
+    "rimraf": "2.1.2",
+    "dive": "0.3.0",
+    "node-schedule": "0.1.5",
+    "request": "2.12.0",
+    "curry": "0.0.4",
+    "async": "0.1.22"
   },
   "devDependencies": {
     "chai": "latest",
@@ -31,5 +29,5 @@
   "engines": {
     "node": "0.8.x"
   },
-  "subdomain": "wapm-service"
+  "subdomain": "web-audio-components-api"
 }
