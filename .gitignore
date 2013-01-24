@@ -1,4 +1,5 @@
 test/build
+build/
 lib-cov
 *.seed
 *.log
