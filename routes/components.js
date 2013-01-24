@@ -15,6 +15,7 @@ var
 
 // GET /components
 // GET /components/?=query
+// TODO Probably can cache the entire result
 exports.index = function (req, res, next) {
   var query = req.query.q;
   Component[query ? 'search' : 'find'](query || {}, RETURN_FIELDS, function (err, components) {
