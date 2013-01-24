@@ -16,8 +16,8 @@ var
   clear      = require('./helpers/clear');
 
 var
-  overdrive = require(installDir + '/web-audio-components-overdrive/component.json'),
-  delay     = require(installDir + '/web-audio-components-delay/component.json');
+  overdrive = require('../mocks/components/web-audio-components-overdrive/component.json'),
+  delay     = require('../mocks/components/web-audio-components-delay/component.json');
 
 describe('Update Model', function () {
   beforeEach(clear);

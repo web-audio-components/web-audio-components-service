@@ -13,8 +13,8 @@ var
   helper     = require('../lib/componentHelper');
 
 var
-  overdrive = require(installDir + '/web-audio-components-overdrive/component.json'),
-  delay     = require(installDir + '/web-audio-components-delay/component.json');
+  overdrive = require('../mocks/components/web-audio-components-overdrive/component.json'),
+  delay     = require('../mocks/components/web-audio-components-delay/component.json');
 
 describe('Component Helper', function () {
 
