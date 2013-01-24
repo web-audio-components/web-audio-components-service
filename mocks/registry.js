@@ -16,7 +16,7 @@ module.exports = [
     ],
     "stars": 4,
     "web-audio": {
-
+      "type" : "effect"
     }
   },
   {
@@ -36,7 +36,7 @@ module.exports = [
     ],
     "stars": 2,
     "web-audio": {
-
+      "type" : "effect"
     }
   },
   {
