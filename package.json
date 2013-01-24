@@ -14,9 +14,8 @@
     "underscore": "latest",
     "express": "latest",
     "mongoose": "latest",
-    "request-extend": "latest",
+    "mkdirp": "latest",
     "node-schedule": "latest",
-    "github": "latest",
     "request": "latest",
     "curry": "latest",
     "async": "latest"
