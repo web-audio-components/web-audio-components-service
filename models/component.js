@@ -5,9 +5,10 @@ var
 
 var Component = new mongoose.Schema({
   // Component attributes
-  name : { type: String, required: true, index: true, unique: true, lowercase: true },
-  repo : { type: String, required: true  },
+  name : { type: String, required: true },
+  repo : { type: String, required: true, index: true, unique: true  },
   description : { type: String },
+  author : { type: String },
   version : { type: String, required: true },
   keywords : { type: Array },
   main : { type: String, default: 'index.js' },
@@ -17,8 +18,6 @@ var Component = new mongoose.Schema({
   license : { type: String },
 
   stars : { type: Number, default: 0 },
-  script : { type: Buffer, require: true },
-  build: { type: Buffer, required: true },
   updated : { type: Date, default: Date.now, set: isoToDate },
   type: { type: String },
   
