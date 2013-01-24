@@ -10,7 +10,7 @@ var
 describe('Registry Fetch', function () {
   it('should fetch and return array of only audio components', function (done) {
     fetch(function (err, data) {
-      expect(data).to.have.length(3);
+      expect(data).to.have.length(2);
       done();
     });
   });
