@@ -44,7 +44,7 @@ exports.getScript = function (req, res, next) {
   var name = req.params.owner + '/' + req.params.name;
   Component.findOne({ repo: name }, 'main', function (err, pkg) {
     if (!err) {
-      fs.readFile(installDir + '/' + pkg.repo + '/' + pkg.main, function (err, buffer) {
+      fs.readFile(installDir + '/' + name + '/' + pkg.main, function (err, buffer) {
         if (!err) {
           res.send(buffer);
         } else {
