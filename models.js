@@ -1,11 +1,11 @@
 var
-  mongoose = require( 'mongoose' );
+  mongoose = require('mongoose');
   db = mongoose.connection;
 
 var
-  Component = db.model( 'Component', require( './models/component' ));
+  Component = db.model('Component', require('./models/component'));
 
-Component.ensureIndexes(function ( err ) {
+Component.ensureIndexes(function (err) {
   console.error(err);
 });
 
