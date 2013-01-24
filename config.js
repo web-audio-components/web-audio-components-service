@@ -5,7 +5,7 @@ var
 config = {
   production : {
     db : {
-      URL : process.env['wac_service_mongodb_url']
+      URL : process.env['WAC_SERVICE_MONGODB_URL']
     },
     componentsURL : 'http://50.116.26.197/components/all',
     componentInstallDir : __dirname + '/components',
