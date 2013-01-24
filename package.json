@@ -16,6 +16,7 @@
     "mongoose": "latest",
     "mkdirp": "latest",
     "rimraf": "latest",
+    "dive": "latest",
     "node-schedule": "latest",
     "request": "latest",
     "curry": "latest",
