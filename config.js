@@ -7,8 +7,8 @@ config = {
     db : {
       URL : process.env['wapm_service_mongodb_url']
     },
-    componentInstallDir : 'components',
-    componentBuildDir : 'build',
+    componentInstallDir : __dirname + '/components',
+    componentBuildDir : __dirname + '/build',
     componentsURL : 'http://50.116.26.197/components/all',
     github_client_id : process.env['wapm_github_client_id'],
     github_client_secret : process.env['wapm_github_client_secret'],
@@ -19,8 +19,8 @@ config = {
       URL : 'mongodb://localhost:27017/wapm-service'
     },
     componentsURL : 'http://50.116.26.197/components/all',
-    componentInstallDir : 'components',
-    componentBuildDir : 'build',
+    componentInstallDir : __dirname + '/components',
+    componentBuildDir : __dirname + '/build',
     github_client_id : process.env['wapm_github_client_id'],
     github_client_secret : process.env['wapm_github_client_secret'],
     port : 8000
@@ -30,8 +30,8 @@ config = {
       URL : 'mongodb://localhost:27017/wapm-service-test'
     },
     componentsURL : 'http://localhost:8000/mock/registry',
-    componentInstallDir : 'test/components',
-    componentBuildDir : 'test/build',
+    componentInstallDir : __dirname + '/test/components',
+    componentBuildDir : __dirname + '/test/build',
     github_client_id : process.env['wapm_github_client_id'],
     github_client_secret : process.env['wapm_github_client_secret'],
     port : 8000
