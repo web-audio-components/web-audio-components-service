@@ -23,7 +23,13 @@ after(function (done) {
 });
 
 describe('Component Helper: Install', function () {
-  it('should install the component locally');
+  // Maybe a better way to test implementation rather than use mock?
+  // Don't want to hammer components service
+  it('should call install and fire the callback', function (done) {
+    helper.install({ repo: 'what/ever', version: '*' }, function () {
+      done();
+    });
+  });
 });
 
 describe('Component Helper: Build', function () {
