@@ -36,3 +36,12 @@ exports.getScript = function (pkg, callback) {
 
   request.get(options, callback);
 };
+
+exports.getBuild = function (pkg, callback) {
+  var options = {
+    uri: 'http://localhost:' + config.port + '/components/' + pkg + '/build.js',
+    timeout: 3000
+  };
+
+  request.get(options, callback);
+};
