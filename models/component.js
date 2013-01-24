@@ -18,11 +18,7 @@ var Component = new mongoose.Schema({
   script : { type: Buffer, require: true },
   build: { type: Buffer, required: true },
   updated : { type: Date, default: Date.now, set: isoToDate },
-
-  // Component types
-  instrument : { type: Boolean },
-  effect : { type: Boolean },
-  tool : { type: Boolean },
+  type: { type: String },
   
   // Not yet implemented
   ui : { type: Boolean }
