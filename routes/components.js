@@ -46,7 +46,7 @@ exports.getScript = function (req, res, next) {
     repo = req.params.owner + '/' + req.params.name,
     path = utils.getInstallDir(repo);
   Component.findOne({ repo: repo }, 'main', function (err, pkg) {
-    if (!err) {
+    if (!err && pkg) {
       fs.readFile(path + pkg.main, function (err, buffer) {
         if (!err) {
           res.send(buffer);
@@ -54,6 +54,8 @@ exports.getScript = function (req, res, next) {
           handleError(err, next);
         }
       });
+    } else if (!err) {
+      res.status(400).send();
     } else {
       handleError(err, next);
     }
@@ -67,7 +69,9 @@ exports.getBuild = function (req, res, next) {
     if (!err) {
       res.send(buffer);
     } else {
-      handleError(err, next);
+      // Install of handling error, assume that it was just an invalid repo
+      res.status(400).send();
+      // handleError(err, next);
     }
   });
 };

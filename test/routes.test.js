@@ -108,6 +108,14 @@ describe('Routes', function () {
         });
       });
     });
+
+    it('returns a 400 for a component that doesn\'t exist', function (done) {
+      api.getScript('not-a-real/component', function (err, res, body) {
+        expect(res.statusCode).to.equal(400);
+        expect(body).to.not.be.ok;
+        done();
+      });
+    });
   });
 
   describe('GET /components/:owner/:repo/build.js', function () {
@@ -118,6 +126,14 @@ describe('Routes', function () {
           expect(body).to.equal(data);
           done();
         });
+      });
+    });
+
+    it('returns a 400 for a component that doesn\'t exist', function (done) {
+      api.getBuild('not-a-real/component', function (err, res, body) {
+        expect(res.statusCode).to.equal(400);
+        expect(body).to.not.be.ok;
+        done();
       });
     });
   });
