@@ -10,6 +10,12 @@ config = {
     db : {
       URL : process.env['WAC_SERVICE_MONGODB_URL']
     },
+    twitter : {
+      consumerKey : process.env['WAC_SERVICE_TWITTER_CONSUMER_KEY'],
+      consumerSecret : process.env['WAC_SERVICE_TWITTER_CONSUMER_SECRET'],
+      accessToken : process.env['WAC_SERVICE_TWITTER_ACCESS_TOKEN'],
+      accessTokenSecret : process.env['WAC_SERVICE_TWITTER_ACCESS_TOKEN_SECRET']
+    },
     componentsURL : 'http://50.116.26.197/components/all',
     componentInstallDir : __dirname + '/components',
     componentBuildDir : __dirname + '/build',
