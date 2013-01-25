@@ -14,11 +14,11 @@ function Package (repo, version, options) {
 Package.prototype.__proto__ = Emitter.prototype;
 
 Package.prototype.install = function () {
-  var options = {
-    src : __dirname + '/components/' + this.repo.replace('/', '-'),
-    dest : utils.getInstallDir(this.repo)
-  };
-  fs.copy(options, function (err) {
+  var
+    src  = __dirname + '/components/' + this.repo.replace('/', '-'),
+    dest = utils.getInstallDir(this.repo);
+
+  fs.copy(src, dest, function (err) {
     this.emit('end');
   });
 }
