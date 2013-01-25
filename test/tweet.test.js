@@ -7,10 +7,10 @@ var
   service = require('../server'),
   tweet   = require('../lib/tweet');
 
-var model = {
+var fullModel = {
   "name": "comb",
   "repo": "web-audio-components/comb",
-  "description": "A comb filter effect module for the Web Audio API.",
+  "description": "A comb filter effect.",
   "version": "0.0.1",
   "twitter": "ncthom91",
   "author": "Nick Thompson <ncthom91@gmail.com>",
@@ -27,13 +27,36 @@ var model = {
   "type": "effect"
 };
 
-var expected = "new effect: web-audio-components/comb - http://git.io/xxxxxx [0.0.1] A comb filter effect module for the Web Audio API. #filter #comb ... ★0";
+var minimalModel = {
+  "name": "comb",
+  "repo": "web-audio-components/comb",
+  "description": "A comb filter effect module for the Web Audio API.",
+  "version": "0.0.1",
+  "author": "Nick Thompson <ncthom91@gmail.com>",
+  "dependencies": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+};
+
+var fullExpected = "new effect: web-audio-components/comb - http://git.io/xxxxxx from @ncthom91 [0.0.1] A comb filter effect. #filter #comb #MOCK... ★0";
+
+var minimalExpected = "new: web-audio-components/comb - http://git.io/xxxxxx [0.0.1] A comb filter effect module for the Web Audio API.... ★0";
 
 describe('Tweets', function () {
-  it('should accept a model and post a message', function (done) {
-    tweet(model, function (err, res) {
+  it('should post a message with twitter account, type, keywords', function (done) {
+    tweet(fullModel, function (err, res) {
       expect(err).to.not.be.ok;
-      expect(res.text).to.equal(expected);
+      expect(res.text).to.equal(fullExpected);
+      done();
+    });
+  });
+  
+  it('should post a message without twitter account, type, keywords', function (done) {
+    tweet(minimalModel, function (err, res) {
+      expect(err).to.not.be.ok;
+      expect(res.text).to.equal(minimalExpected);
       done();
     });
   });
