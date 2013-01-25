@@ -21,7 +21,7 @@ module.exports = [
   "web-audio": {
     "type": "effect"
   }
-}
+},
 {
   "name": "delay",
   "repo": "web-audio-components/delay",
@@ -43,7 +43,7 @@ module.exports = [
   "web-audio": {
     "type": "effect"
   }
-}
+},
 {
   "name": "overdrive",
   "repo": "web-audio-components/overdrive",
