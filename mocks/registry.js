@@ -1,58 +1,84 @@
 module.exports = [
-  {
-    "name": "mock-overdrive",
-    "description": "Mock Overdrive",
-    "version": "0.1.3",
-    "main": "index.js",
-    "repo": "mock/mock-overdrive",
-    "license": "MIT",
-    "scripts": [
-      "index.js"
-    ],
-    "keywords": [
-      "mock",
-      "web audio api",
-      "overdrive"
-    ],
-    "stars": 4,
-    "web-audio": {
-      "type" : "effect"
-    }
-  },
-  {
-    "name": "mock-delay",
-    "description": "Mock Delay",
-    "version": "0.1.4",
-    "main": "index.js",
-    "repo": "mock/mock-delay",
-    "license": "MIT",
-    "scripts": [
-      "index.js"
-    ],
-    "keywords": [
-      "mock",
-      "web audio api",
-      "delay"
-    ],
-    "stars": 2,
-    "web-audio": {
-      "type" : "effect"
-    }
-  },
-  {
-    "name": "not-an-audio-component",
-    "description": "Not an Audio Component",
-    "version": "0.2.0",
-    "main": "index.js",
-    "repo": "mock/not-audio",
-    "license": "MIT",
-    "scripts": [
-      "index.js"
-    ],
-    "keywords": [
-      "mock",
-      "not audio"
-    ],
-    "stars": 2
+{
+  "name": "comb",
+  "repo": "web-audio-components/comb",
+  "description": "A comb filter effect module for the Web Audio API.",
+  "version": "0.0.1",
+  "author": "Nick Thompson <ncthom91@gmail.com>",
+  "keywords": [
+    "web-audio",
+    "filter",
+    "comb",
+    "feedback",
+    "MOCK"
+  ],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ],
+  "web-audio": {
+    "type": "effect"
   }
-]
+}
+{
+  "name": "delay",
+  "repo": "web-audio-components/delay",
+  "description": "A simple delay/echo effect module for the Web Audio API.",
+  "version": "0.0.1",
+  "author": "Nick Thompson <ncthom91@gmail.com>",
+  "keywords": [
+    "web-audio",
+    "delay",
+    "effect",
+    "MOCK"
+  ],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ],
+  "web-audio": {
+    "type": "effect"
+  }
+}
+{
+  "name": "overdrive",
+  "repo": "web-audio-components/overdrive",
+  "description": "An overdrive distortion effect for the Web Audio API.",
+  "version": "0.0.2",
+  "author": "Nick Thompson <ncthom91@gmail.com>",
+  "twitter": "@ncthom91",
+  "keywords": [
+    "web-audio",
+    "effect",
+    "distortion",
+    "overdrive",
+    "MOCK"
+  ],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ],
+  "web-audio": {
+    "type": "effect"
+  }
+},
+{
+  "name": "not an audio component",
+  "repo": "fake/component",
+  "version": "0.0.2",
+  "keywords": [
+    "MOCK"
+  ],
+  "dependencies": {},
+  "development": {},
+  "scripts": [
+    "index.js"
+  ]
+}
+];
