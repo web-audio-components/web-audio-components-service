@@ -1,6 +1,8 @@
 var
-  registry = require('../mocks/registry');
+  fs = require('fs');
 
 exports.registry = function (req, res) {
-  res.json(registry);
+  fs.readFile(__dirname + '/../mocks/registry.json', 'utf-8', function (err, data) {
+    res.json(JSON.parse(data));
+  });
 };
