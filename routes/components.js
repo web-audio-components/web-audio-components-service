@@ -30,8 +30,10 @@ exports.index = function (req, res, next) {
 exports.show = function (req, res, next) {
   var name = req.params.owner + '/' + req.params.name;
   Component.findOne({ repo: name }, RETURN_FIELDS, function (err, pkg) {
-    if (!err) {
-      res.json(pkg ? pkg : {}); 
+    if (!err && pkg) {
+      res.json(pkg);
+    } else if (!err && !pkg) {
+      res.status(400).json({});
     } else {
       handleError(err, next);
     }

@@ -1,5 +1,6 @@
 process.env.NODE_ENV = 'test';
 var
+  _          = require('underscore'),
   service    = require('../server'),
   fs         = require('fs'),
   api        = require('./helpers/api'),
@@ -49,6 +50,14 @@ describe('Routes', function () {
         done();
       });
     });
+
+    it('returns a 400 for a component that doesn\'t exist', function (done) {
+      api.get('not-a-real/component', function (err, res, body) {
+        expect(res.statusCode).to.equal(400);
+        expect(_.isEmpty(body)).to.be.ok;
+        done();
+      });
+    });
   });
 
   describe('GET /components?q=query', function () {
@@ -79,7 +88,7 @@ describe('Routes', function () {
       });
     });
 
-    it( 'searches the keywords for query', function (done) {
+    it('searches the keywords for query', function (done) {
       api.search('feedback', function (err, res, body) {
         expect(err).to.not.be.ok;
         body.should.have.length(1);
