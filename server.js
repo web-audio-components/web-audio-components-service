@@ -22,11 +22,4 @@ if (!config.isTest) {
   require('./lib/taskManager');
 }
 
-// Seed in development
-if (config.isDevelopment && config.useMocks) {
-  require('./lib/seed')(function (err, count) {
-    if (!err) { console.log('Seeded ' + count + ' components'); }
-  });
-}
-
 module.exports = app;
