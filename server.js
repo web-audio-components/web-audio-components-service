@@ -23,7 +23,7 @@ if (!config.isTest) {
 }
 
 // Seed in development
-if (config.isDevelopment) {
+if (config.isDevelopment && config.useMocks) {
   require('./lib/seed')(function (err, count) {
     if (!err) { console.log('Seeded ' + count + ' components'); }
   });
