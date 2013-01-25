@@ -7,7 +7,7 @@ var
   models = require('./models');
 
 app
-  .use(express.bodyParser())
+  .use(express.bodyParser());
 
 require('./router')(app);
 
