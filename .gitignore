@@ -1,6 +1,8 @@
+test/components
 test/build
 build/
 components/
+!mocks/components/
 lib-cov
 *.seed
 *.log

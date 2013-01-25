@@ -9,7 +9,8 @@
     "web-audio",
     "effect",
     "distortion",
-    "overdrive"
+    "overdrive",
+    "MOCK"
   ],
   "dependencies": {},
   "development": {},
