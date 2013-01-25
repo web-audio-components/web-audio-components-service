@@ -1,4 +1,4 @@
-module.exports = [
+[
 {
   "name": "comb",
   "repo": "web-audio-components/comb",
@@ -81,4 +81,4 @@ module.exports = [
     "index.js"
   ]
 }
-];
+]

@@ -1,6 +1,6 @@
 var
+  fs         = require('fs'),
   config     = require('./config'),
-  mocks      = require('./routes/mocks'),
   help       = require('./lib/routeHelpMessage'),
   components = require('./routes/components');
 
@@ -28,6 +28,10 @@ module.exports = function (app) {
   });
 
   if (config.useMocks) {
-    app.get('/mock/registry', mocks.registry);
+    app.get('/mock/registry', function (req, res, next) {
+      fs.readFile('./mocks/registry.json', 'utf-8', function (err, data) {
+        res.json(JSON.parse(data));
+      });
+    });
   }
 };
