@@ -4,11 +4,11 @@ var
   fs         = require('fs'),
   api        = require('./helpers/api'),
   clear      = require('./helpers/clear'),
+  seed       = require('./helpers/seed'),
   async      = require('async'),
   chai       = require('chai'),
   should     = chai.should(),
   expect     = chai.expect,
-  seed       = require('../lib/seed'),
   config     = require('../config'),
   installDir = config.componentInstallDir,
   buildDir   = config.componentBuildDir;
