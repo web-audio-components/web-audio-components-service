@@ -34,6 +34,7 @@ describe('Tweets', function () {
     tweet(model, function (err, res) {
       expect(err).to.not.be.ok;
       expect(res.text).to.equal(expected);
+      done();
     });
   });
 });
