@@ -3,4 +3,6 @@ var
 
 // Current sync implementation would seed with 
 // mock registry
-module.exports = sync;
+module.exports = function (callback) {
+  sync.run(callback);
+};
