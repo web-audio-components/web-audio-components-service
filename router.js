@@ -27,7 +27,7 @@ module.exports = function (app) {
     res.send(err.code || 500, { error: err.message });
   });
 
-  if (config.isTest) {
+  if (config.useMocks) {
     app.get('/mock/registry', mocks.registry);
   }
 };
