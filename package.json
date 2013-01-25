@@ -1,6 +1,6 @@
 {
   "name": "web-audio-components-service",
-  "version": "0.1.0",
+  "version": "0.1.0-5",
   "private": true,
   "description": "Web Audio Components Service",
   "main": "server.js",
@@ -21,7 +21,9 @@
     "request": "2.12.0",
     "curry": "0.0.4",
     "async": "0.1.22",
-    "fs-extra": "0.3.2"
+    "fs-extra": "0.3.2",
+    "twit": "1.0.12",
+    "gitio": "1.0.1"
   },
   "devDependencies": {
     "chai": "latest",
