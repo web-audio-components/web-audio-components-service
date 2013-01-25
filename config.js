@@ -3,7 +3,7 @@ var
   config;
 
 // Determines whether or not mock data is used in development
-var USE_MOCKS = false;
+var USE_MOCKS = true;
 
 config = {
   production : {
