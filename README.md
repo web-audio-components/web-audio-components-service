@@ -31,6 +31,6 @@ Returns the corresponding component's built script
 
 ## Development
 
-Install dependencies via `npm install` and run mongodb via `mongod`. Start up the server with `node .`, and go to `localhost:8000` to view the service. By default, the development environment uses mock data, but can be changed to use the components service by changing `USE_MOCKS` to true in the config.
+Install dependencies via `npm install` and run mongodb via `mongod`. Start up the server with `node .`, and go to `localhost:8000` to view the service. By default, the development environment uses mock data, but can be changed to use the components service by changing `USE_MOCKS` to false in the config.
 
 Run tests with `npm test`.
