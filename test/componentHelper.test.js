@@ -18,12 +18,10 @@ var
 
 describe('Component Helper', function () {
 
-  before(clear);
-  after(clear);
+  beforeEach(clear);
+  afterEach(clear);
 
   describe('Install', function () {
-    // Maybe a better way to test implementation rather than use mock?
-    // Don't want to hammer components service
     it('should call install and fire the callback', function (done) {
       helper.install({ repo: 'what/ever', version: '*' }, function () {
         done();
@@ -33,12 +31,14 @@ describe('Component Helper', function () {
 
   describe('Build', function () {
     it('should build component to build directory', function (done) {
-      helper.build(delay, function (err) {
-        var build = utils.getBuildScriptPath(delay.repo);
-        expect(err).to.not.be.ok;
-        fs.stat(build, function (err, stats) {
-          expect(stats.size).to.equal(3222);
-          done();
+      helper.install(delay, function (err) {
+        helper.build(delay, function (err) {
+          var path = utils.getBuildScriptPath(delay.repo);
+          expect(err).to.not.be.ok;
+          fs.stat(path, function (err, stats) {
+            expect(stats.size).to.equal(3222);
+            done();
+          });
         });
       });
     });
