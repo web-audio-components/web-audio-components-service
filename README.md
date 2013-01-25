@@ -17,20 +17,20 @@ Returns an array of all audio components
 
 Returns an array of components that match query
 
-`GET /components/:owner/:repo`
+`GET /components/:user/:project`
 
-Returns the component that matches the owner/repo name
+Returns the component that matches the user/project name
 
-`GET /components/:owner/:repo/script.js`
+`GET /components/:user/:project/script.js`
 
 Returns the corresponding component's script
 
-`GET /components/:owner/:repo/build.js`
+`GET /components/:user/:project/build.js`
 
 Returns the corresponding component's built script
 
-## Todo
+## Development
 
-* Add mock component that requires dependencies
-* Twitter posts on new package, like component(1)
-* Remove components that are no longer in the registry from the DB
+Install dependencies via `npm install` and run mongodb via `mongod`. Start up the server with `node .`, and go to `localhost:8000` to view the service. By default, the development environment uses mock data, but can be changed to use the components service by changing `USE_MOCKS` to true in the config.
+
+Run tests with `npm test`.
