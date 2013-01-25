@@ -2,9 +2,8 @@ var
   env = process.env.NODE_ENV || 'development',
   config;
 
-
 // Determines whether or not mock data is used in development
-var USE_MOCKS = true;
+var USE_MOCKS = false;
 
 config = {
   production : {
@@ -14,7 +13,7 @@ config = {
     componentsURL : 'http://50.116.26.197/components/all',
     componentInstallDir : __dirname + '/components',
     componentBuildDir : __dirname + '/build',
-    port : 80
+    port : 9999
   },
   development : {
     db : {
@@ -26,7 +25,6 @@ config = {
     componentInstallDir : __dirname + '/components',
     componentBuildDir : __dirname + '/build',
     port : 8000,
-    test : this.port,
     useMocks : USE_MOCKS
   },
   test : {
