@@ -16,7 +16,7 @@ config = {
       accessToken : process.env['WAC_SERVICE_TWITTER_ACCESS_TOKEN'],
       accessTokenSecret : process.env['WAC_SERVICE_TWITTER_ACCESS_TOKEN_SECRET']
     },
-    componentsURL : 'http://50.116.26.197/components/all',
+    componentsURL : 'http://component.io/components/all',
     componentInstallDir : __dirname + '/components',
     componentBuildDir : __dirname + '/build',
     port : 9999
@@ -27,7 +27,7 @@ config = {
     },
     componentsURL : USE_MOCKS ?
       'http://localhost:8000/mock/registry' :
-      'http://50.116.26.197/components/all',
+      'http://component.io/components/all',
     componentInstallDir : __dirname + '/components',
     componentBuildDir : __dirname + '/build',
     port : 8000,
