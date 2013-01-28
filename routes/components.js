@@ -3,7 +3,7 @@ var
   Component   = require('../models').Component,
   config      = require('../config'),
   utils       = require('../lib/utils'),
-  handleError = require('../lib/handleError');
+  logger      = require('../lib/logger');
 
 var
   RETURN_FIELDS = [
@@ -21,7 +21,7 @@ exports.index = function (req, res, next) {
     if (!err) {
       res.json(components);
     } else {
-      handleError(err, next);
+      next(err);
     }
   });
 };
@@ -35,7 +35,7 @@ exports.show = function (req, res, next) {
     } else if (!err && !pkg) {
       res.status(400).json({});
     } else {
-      handleError(err, next);
+      next(err);
     }
   });
 };
@@ -51,12 +51,13 @@ exports.getScript = function (req, res, next) {
         if (!err) {
           res.send(buffer);
         } else {
-          handleError(err, next);
+          next(err);
         }
       });
+    } else if (!err && !pkg) {
+      res.status(400).send();
     } else {
-      //res.status(400).send();
-      handleError(err, next);
+      next(err);
     }
   });
 };
@@ -64,13 +65,26 @@ exports.getScript = function (req, res, next) {
 // GET /components/:owner/:name/build.js
 exports.getBuild = function (req, res, next) {
   var repo = req.params.owner + '/' + req.params.name;
-  fs.readFile(utils.getBuildScriptPath(repo), function (err, buffer) {
-    if (!err) {
-      res.send(buffer);
+  
+  /**
+   * Querying DB isn't necessary since we already have all the information
+   * needed, but this ensures we can split up an invalid repo error
+   * with a legitimate error, better way to do this?
+   */
+
+  Component.findOne({ repo: repo }, RETURN_FIELDS, function (err, pkg) {
+    if (!err && pkg) {
+      fs.readFile(utils.getBuildScriptPath(repo), function (err, buffer) {
+        if (!err) {
+          res.send(buffer);
+        } else {
+          next(err);
+        }
+      });
+    } else if (!err && !pkg) {
+      res.status(400).send();
     } else {
-      // Install of handling error, assume that it was just an invalid repo
-      //res.status(400).send();
-      handleError(err, next);
+      next(err);
     }
   });
 };
