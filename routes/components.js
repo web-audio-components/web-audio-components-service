@@ -54,9 +54,8 @@ exports.getScript = function (req, res, next) {
           handleError(err, next);
         }
       });
-    } else if (!err) {
-      res.status(400).send();
     } else {
+      //res.status(400).send();
       handleError(err, next);
     }
   });
@@ -70,8 +69,8 @@ exports.getBuild = function (req, res, next) {
       res.send(buffer);
     } else {
       // Install of handling error, assume that it was just an invalid repo
-      res.status(400).send();
-      // handleError(err, next);
+      //res.status(400).send();
+      handleError(err, next);
     }
   });
 };

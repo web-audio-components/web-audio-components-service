@@ -112,7 +112,7 @@ describe('Routes', function () {
     it('returns a 400 for a component that doesn\'t exist', function (done) {
       api.getScript('not-a-real/component', function (err, res, body) {
         expect(res.statusCode).to.equal(400);
-        expect(body).to.not.be.ok;
+        expect(body).to.be.ok;
         done();
       });
     });
@@ -132,7 +132,7 @@ describe('Routes', function () {
     it('returns a 400 for a component that doesn\'t exist', function (done) {
       api.getBuild('not-a-real/component', function (err, res, body) {
         expect(res.statusCode).to.equal(400);
-        expect(body).to.not.be.ok;
+        expect(body).to.be.ok;
         done();
       });
     });
