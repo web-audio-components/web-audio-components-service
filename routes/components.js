@@ -9,7 +9,7 @@ var
   RETURN_FIELDS = [
     'name', 'repo', 'main', 'description', 'scripts',
     'dependencies', 'keywords', 'updated', 'type',
-    'twitter', 'license', 'version', 'stars'
+    'twitter', 'license', 'version', 'stars', 'author'
   ].join(' ');
 
 // GET /components
