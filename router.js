@@ -20,7 +20,6 @@ module.exports = function (app) {
    */
 
   app.all('*', function (req, res, next) {
-    console.log(req.host);
     if (/^\/components/.test(req.url)) {
       logger.track(req.method.toUpperCase() + ': ' + req.url);
     }
@@ -49,6 +48,7 @@ module.exports = function (app) {
    */
 
   app.use(function (err, req, res, next) {
+    logger.debug.error(req.method.toUpperCase() + ': ' + req.url, err);
     res.send(err.code || 500, { error: err.message });
   });
 
