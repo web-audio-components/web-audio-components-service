@@ -56,7 +56,7 @@ module.exports = function (app) {
    * Mocks in test and/or dev
    */
 
-  if (config.useMocks) {
+  if (config.useMockRegistry) {
     app.get('/mock/registry', mocks.registry);
   }
 };

@@ -3,8 +3,8 @@ var
   config;
 
 // Determines whether or not mock data is used in development
-var USE_MOCKS = true;
-
+var USE_MOCK_REPOSITORY = true;
+var USE_MOCK_REGISTRY = true;
 config = {
   production : {
     db : {
@@ -25,13 +25,14 @@ config = {
     db : {
       URL : 'mongodb://localhost:27017/wac-service'
     },
-    componentsURL : USE_MOCKS ?
+    componentsURL : USE_MOCK_REGISTRY ?
       'http://localhost:8000/mock/registry' :
       'http://component.io/components/all',
     componentInstallDir : __dirname + '/components',
     componentBuildDir : __dirname + '/build',
     port : 8000,
-    useMocks : USE_MOCKS
+    useMockRegistry : USE_MOCK_REGISTRY,
+    useMockRepository : USE_MOCK_REPOSITORY
   },
   test : {
     db : {
@@ -41,7 +42,8 @@ config = {
     componentInstallDir : __dirname + '/test/components',
     componentBuildDir : __dirname + '/test/build',
     port : 8001,
-    useMocks : true
+    useMockRegistry : true,
+    useMockRepository : true
   } 
 };
 
