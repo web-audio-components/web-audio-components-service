@@ -3,8 +3,9 @@ var
   config;
 
 // Determines whether or not mock data is used in development
-var USE_MOCK_REPOSITORY = false;
+var USE_MOCK_REPOSITORY = true;
 var USE_MOCK_REGISTRY = true;
+var TWEET_IN_PRODUCTION = false;
 
 config = {
   production : {
@@ -19,6 +20,7 @@ config = {
     },
     componentsURL : 'http://component.io/components/all',
     componentInstallDir : __dirname + '/components',
+    tweet : TWEET_IN_PRODUCTION,
     port : 9999
   },
   development : {
