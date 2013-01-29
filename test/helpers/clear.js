@@ -1,9 +1,9 @@
 var
-  async     = require('async'),
-  config    = require('../../config'),
-  buildDir  = config.componentBuildDir,
-  Component = require('../../models').Component,
-  rimraf    = require('rimraf');
+  async      = require('async'),
+  config     = require('../../config'),
+  installDir = config.componentInstallDir,
+  Component  = require('../../models').Component,
+  rimraf     = require('rimraf');
 
 var clear = function clear (done) {
   this.timeout && this.timeout(2000);
@@ -14,7 +14,7 @@ var clear = function clear (done) {
 }
 
 clear.build = function (done) {
-  rimraf(buildDir, done);
+  rimraf(installDir, done);
 };
 
 clear.db = function (done) {

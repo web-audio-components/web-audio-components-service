@@ -6,15 +6,16 @@ var
   expect     = chai.expect,
   fs         = require('fs'),
   config     = require('../config'),
-  installDir = config.componentInstallDir,
-  buildDir   = config.componentBuildDir,
+  installDir = config.componentInstallDir + '/',
+  buildDir   = config.componentBuildDir + '/',
   utils      = require('../lib/utils'),
   clear      = require('./helpers/clear'),
   helper     = require('../lib/componentHelper');
 
 var
-  overdrive = require('../mocks/components/web-audio-components-overdrive/component.json'),
-  delay     = require('../mocks/components/web-audio-components-delay/component.json');
+  overdrive  = require('../mocks/components/web-audio-components-overdrive/component.json'),
+  delay      = require('../mocks/components/web-audio-components-delay/component.json'),
+  builtDelay = fs.readFileSync(__dirname + '/testData/builtDelay.js', 'utf-8');
 
 describe('Component Helper', function () {
 
@@ -22,30 +23,34 @@ describe('Component Helper', function () {
   afterEach(clear);
 
   describe('Install', function () {
-    it('should call install and fire the callback', function (done) {
-      helper.install({ repo: 'what/ever', version: '*' }, function () {
-        done();
+    it('should pull down the component.json', function (done) {
+      helper.install(overdrive, function (err) {
+        expect(err).to.not.be.ok;
+        fs.exists(utils.getInstallDir(overdrive.repo) + 'component.json', function (exists) {
+          expect(exists).to.be.ok;
+          done();
+        });
       });
     });
   });
 
   describe('Build', function () {
-    it('should build component to build directory', function (done) {
+    it('should build component and return the built js string in callback', function (done) {
       helper.install(delay, function (err) {
-        helper.build(delay, function (err) {
-          var path = utils.getBuildScriptPath(delay.repo);
+        helper.build(delay, function (err, js) {
           expect(err).to.not.be.ok;
-          fs.stat(path, function (err, stats) {
-            expect(stats.size).to.equal(3222);
-            done();
-          });
+          expect(js).to.equal(builtDelay);
+          done();
         });
       });
     });
     it('returns an error if invalid repo', function (done) {
-      helper.build({ repo: 'not/real', version: '*' }, function (err) {
-        expect(err).to.be.ok;
-        done();
+      helper.install(delay, function (err) {
+        helper.build({ repo: 'not/real', version: '*' }, function (err, js) {
+          expect(err).to.be.ok;
+          expect(js).to.not.be.ok;
+          done();
+        });
       });
     });
   });

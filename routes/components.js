@@ -40,47 +40,12 @@ exports.show = function (req, res, next) {
   });
 };
 
-// GET /components/:owner/:name/script.js
-exports.getScript = function (req, res, next) {
-  var
-    repo = req.params.owner + '/' + req.params.name,
-    path = utils.getInstallDir(repo);
-  Component.findOne({ repo: repo }, 'main', function (err, pkg) {
-    if (!err && pkg) {
-      fs.readFile(path + pkg.main, function (err, buffer) {
-        if (!err) {
-          res.send(buffer);
-        } else {
-          next(err);
-        }
-      });
-    } else if (!err && !pkg) {
-      res.status(400).send();
-    } else {
-      next(err);
-    }
-  });
-};
-
 // GET /components/:owner/:name/build.js
 exports.getBuild = function (req, res, next) {
   var repo = req.params.owner + '/' + req.params.name;
-  
-  /**
-   * Querying DB isn't necessary since we already have all the information
-   * needed, but this ensures we can split up an invalid repo error
-   * with a legitimate error, better way to do this?
-   */
-
-  Component.findOne({ repo: repo }, RETURN_FIELDS, function (err, pkg) {
+  Component.findOne({ repo: repo }, 'build', function (err, pkg) {
     if (!err && pkg) {
-      fs.readFile(utils.getBuildScriptPath(repo), function (err, buffer) {
-        if (!err) {
-          res.send(buffer);
-        } else {
-          next(err);
-        }
-      });
+      res.send(pkg.build);
     } else if (!err && !pkg) {
       res.status(400).send();
     } else {

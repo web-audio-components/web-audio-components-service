@@ -40,7 +40,6 @@ module.exports = function (app) {
 
   app.get('/components', components.index);
   app.get('/components/:owner/:name', components.show);
-  app.get('/components/:owner/:name/script.js', components.getScript);
   app.get('/components/:owner/:name/build.js', components.getBuild);
 
   /**

@@ -98,30 +98,11 @@ describe('Routes', function () {
     });
   });
 
-  describe('GET /components/:owner/:repo/script.js', function () {
-    it('returns the script', function (done) {
-      api.getScript('web-audio-components/delay', function (err, res, body) {
-        expect(err).to.not.be.ok;
-        fs.readFile(installDir + '/web-audio-components-delay/index.js', 'utf-8', function (err, data) {
-          expect(body).to.equal(data);
-          done();
-        });
-      });
-    });
-
-    it('returns a 400 for a component that doesn\'t exist', function (done) {
-      api.getScript('not-a-real/component', function (err, res, body) {
-        expect(res.statusCode).to.equal(400);
-        done();
-      });
-    });
-  });
-
   describe('GET /components/:owner/:repo/build.js', function () {
     it('returns the built script', function (done) {
       api.getBuild('web-audio-components/delay', function (err, res, body) {
         expect(err).to.not.be.ok;
-        fs.readFile(buildDir + '/web-audio-components-delay/build.js', 'utf-8', function (err, data) {
+        fs.readFile(__dirname + '/testData/builtDelay.js', 'utf-8', function (err, data) {
           expect(body).to.equal(data);
           done();
         });

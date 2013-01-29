@@ -16,6 +16,7 @@ var Component = new mongoose.Schema({
   dependencies : [ Dependency ],
   twitter : { type: String },
   license : { type: String },
+  build : { type: Buffer },
 
   stars : { type: Number, default: 0 },
   updated : { type: Date, default: Date.now, set: isoToDate },

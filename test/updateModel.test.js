@@ -53,10 +53,8 @@ describe('Update Model', function () {
     update(model, overdrive, function (err) {
       Component.findOne({ name: 'overdrive' }, function (err, comp) {
         expect(err).to.not.be.ok;
-        fs.stat(utils.getBuildScriptPath(comp.repo), function (err, stats) {
-          expect(stats.size).to.equal(2257);
-          done();
-        });
+        expect(model.build.length).to.equal(2257);
+        done();
       });
     });
   });
