@@ -1,41 +1,24 @@
-[
-{
-  "name": "comb",
-  "repo": "web-audio-components/comb",
-  "description": "A comb filter effect module for the Web Audio API.",
-  "version": "0.0.1",
-  "author": "Nick Thompson <ncthom91@gmail.com>",
-  "keywords": [
-    "web-audio",
-    "filter",
-    "comb",
-    "feedback",
-    "MOCK"
-  ],
-  "dependencies": {},
-  "development": {},
-  "license": "MIT",
-  "scripts": [
-    "index.js"
-  ],
-  "web-audio": {
-    "type": "effect"
-  }
-},
-{
+[{
   "name": "delay",
   "repo": "web-audio-components/delay",
   "description": "A simple delay/echo effect module for the Web Audio API.",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "author": "Nick Thompson <ncthom91@gmail.com>",
+  "twitter": "@ncthom91",
   "keywords": [
+    "MOCK",
     "web-audio",
     "delay",
-    "effect",
-    "MOCK"
+    "effect"
   ],
-  "dependencies": {},
-  "development": {},
+  "dependencies": {
+    "web-audio-components/filter": "*"
+  },
+  "development": {
+    "web-audio-components/rack" : "*",
+    "jsantell/allen" : "*",
+    "component/event" : "*"
+  },
   "license": "MIT",
   "scripts": [
     "index.js"
@@ -48,18 +31,50 @@
   "name": "overdrive",
   "repo": "web-audio-components/overdrive",
   "description": "An overdrive distortion effect for the Web Audio API.",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "author": "Nick Thompson <ncthom91@gmail.com>",
   "twitter": "@ncthom91",
   "keywords": [
+    "MOCK",
     "web-audio",
     "effect",
     "distortion",
-    "overdrive",
-    "MOCK"
+    "overdrive"
   ],
   "dependencies": {},
-  "development": {},
+  "development": {
+    "web-audio-components/rack" : "*",
+    "jsantell/allen" : "*",
+    "component/event" : "*"
+  },
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ],
+  "web-audio": {
+    "type": "effect"
+  }
+},
+{
+  "name": "comb",
+  "repo": "web-audio-components/comb",
+  "description": "A lowpass comb filter effect module for the Web Audio API.",
+  "version": "0.0.4",
+  "author": "Nick Thompson <ncthom91@gmail.com>",
+  "twitter": "@ncthom91",
+  "keywords": [
+    "MOCK",
+    "web-audio",
+    "filter",
+    "comb",
+    "feedback"
+  ],
+  "dependencies": {},
+  "development": {
+    "web-audio-components/rack" : "*",
+    "jsantell/allen" : "*",
+    "component/event" : "*"
+  },
   "license": "MIT",
   "scripts": [
     "index.js"
@@ -80,5 +95,4 @@
   "scripts": [
     "index.js"
   ]
-}
-]
+}]
