@@ -5,6 +5,7 @@ var
   fs      = require('fs-extra'),
   mkdirp  = require('mkdirp'),
   queue   = require('../lib/queue'),
+  _       = require('underscore'),
   Emitter = require('events').EventEmitter;
 
 function Package (repo, version, options) {
