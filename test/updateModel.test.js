@@ -17,7 +17,8 @@ var
 
 var
   overdrive = require('../mocks/components/web-audio-components-overdrive/component.json'),
-  delay     = require('../mocks/components/web-audio-components-delay/component.json');
+  delay     = require('../mocks/components/web-audio-components-delay/component.json'),
+  builtOverdrive = fs.readFileSync(__dirname + '/testData/builtOverdrive.js', 'utf-8');
 
 describe('Update Model', function () {
   beforeEach(clear);
@@ -27,12 +28,19 @@ describe('Update Model', function () {
     update(model, delay, function (err) {
       expect(err).to.not.be.ok;
       expect(model.name).to.equal('delay');
-      expect(model.dependencies).to.have.length(0);
       done();
     });
   });
 
-  it('should add dependencies to model');
+  it('should add dependencies to model', function (done) {
+    var model = new Component();
+    update(model, delay, function (err) {
+      expect(err).to.not.be.ok;
+      expect(model.dependencies).to.have.length(1);
+      expect(model.dependencies[0].name).to.equal('web-audio-components/filter');
+      done();
+    });
+  });
 
   it('should update an existing model', function (done) {
     var model = new Component();
@@ -53,7 +61,7 @@ describe('Update Model', function () {
     update(model, overdrive, function (err) {
       Component.findOne({ name: 'overdrive' }, function (err, comp) {
         expect(err).to.not.be.ok;
-        expect(model.build.length).to.equal(2257);
+        expect(model.build.length).to.equal(builtOverdrive.length);
         done();
       });
     });
