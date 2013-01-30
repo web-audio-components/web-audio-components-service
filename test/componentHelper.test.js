@@ -5,9 +5,9 @@ var
   should     = chai.should(),
   expect     = chai.expect,
   fs         = require('fs'),
+  server     = require('../server'),
   config     = require('../config'),
   installDir = config.componentInstallDir + '/',
-  buildDir   = config.componentBuildDir + '/',
   utils      = require('../lib/utils'),
   clear      = require('./helpers/clear'),
   helper     = require('../lib/componentHelper');
