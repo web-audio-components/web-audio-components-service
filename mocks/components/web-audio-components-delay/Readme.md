@@ -11,9 +11,15 @@
 
 ```javascript
 var context = new webkitAudioContext()
+  , osc = context.createOscillator()
   , Delay = require("delay")
-  , delay = new Delay(context, 2, 1.0, 0.8)
-  , osc = context.createOscillator();
+  , delay = new Delay(context, {
+      type: 0,
+      delay: 1.0,
+      feedback: 0.42,
+      offset: -0.027,
+      cutoff: 800
+    });
 
 osc.connect(delay.input);
 delay.connect(context.destination);
@@ -24,16 +30,18 @@ For further examples, see the test files.
 
 ## API
 
-### Delay(context, type, delay, feedback)
+### Delay(context, options)
 
 Instantiate a Delay effect module. Expects an `AudioContext` as the first
 parameter.
 
-**Parameters**
+**Options**
 
 - `type` Delay type; 0: normal, 1: inverted, 2: ping pong.
 - `delay` Signal delay time in seconds.
 - `feedback` Signal feedback coefficient.
+- `offset` Stereo offset amount (seconds). Lets you time offset the left or right channel to create a richer stereo panorama.
+- `cutoff` Lowpass filter cutoff frequency applied to the delayed signal.
 
 ### .connect(node)
 

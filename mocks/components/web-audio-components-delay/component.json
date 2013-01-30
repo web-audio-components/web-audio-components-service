@@ -2,16 +2,22 @@
   "name": "delay",
   "repo": "web-audio-components/delay",
   "description": "A simple delay/echo effect module for the Web Audio API.",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "author": "Nick Thompson <ncthom91@gmail.com>",
+  "twitter": "@ncthom91",
   "keywords": [
     "web-audio",
     "delay",
-    "effect",
-    "MOCK"
+    "effect"
   ],
-  "dependencies": {},
-  "development": {},
+  "dependencies": {
+    "web-audio-components/filter": "*"
+  },
+  "development": {
+    "web-audio-components/rack" : "*",
+    "jsantell/allen" : "*",
+    "component/event" : "*"
+  },
   "license": "MIT",
   "scripts": [
     "index.js"

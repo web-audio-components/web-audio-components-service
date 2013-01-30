@@ -7,13 +7,14 @@
  * https://ccrma.stanford.edu/~jos/pasp/Lowpass_Feedback_Comb_Filter.html
  *
  * @param {AudioContext} context
- * @param {number} delay
- * @param {number} feedback
- * @param {number} damping
- * @param {number} cutoff
+ * @param {object} opts
+ * @param {number} opts.delay
+ * @param {number} opts.feedback
+ * @param {number} opts.damping
+ * @param {number} opts.cutoff
  */
 
-function Comb (context, delay, feedback, damping, cutoff) {
+function Comb (context, opts) {
   this.input = context.createGainNode();
   this.output = context.createGainNode();
 
@@ -33,10 +34,12 @@ function Comb (context, delay, feedback, damping, cutoff) {
   this._feedback.connect(this.input);
 
   // Defaults
-  this.delay    = delay     || this.meta.delay.defaultValue;
-  this.feedback = feedback  || this.meta.feedback.defaultValue;
-  this.damping  = damping   || this.meta.damping.defaultValue;
-  this.cutoff   = cutoff    || this.meta.damping.defaultValue;
+  var p = this.meta.params;
+  opts = opts || {};
+  this._delay.delayTime.value   = opts.delay     || p.delay.defaultValue;
+  this._feedback.gain.value     = opts.feedback  || p.feedback.defaultValue;
+  this._damping.gain.value      = opts.damping   || p.damping.defaultValue;
+  this._filter.frequency.value  = opts.cutoff    || p.damping.defaultValue;
 
   // Prevent positive feedback loops
   if (this.feedback * this.damping >= 1.0) {
@@ -54,7 +57,7 @@ Comb.prototype = Object.create(null, {
 
   connect: {
     value: function (dest) {
-      this.output.connect(dest);
+      this.output.connect( dest.input ? dest.input : dest );
     }
   },
 
@@ -74,35 +77,38 @@ Comb.prototype = Object.create(null, {
 
   meta: {
     value: {
-      delay: {
-        min: 0,
-        max: 3,
-        defaultValue: 0.027,
-        type: "pot"
-      },
-      feedback: {
-        min: 0,
-        max: 1,
-        defaultValue: 0.84,
-        type: "pot"
-      },
-      damping: {
-        min: 0,
-        max: 1,
-        defaultValue: 0.2,
-        type: "pot"
-      },
-      cutoff: {
-        min: 0,
-        max: 22050,
-        defaultValue: 3000,
-        type: "pot"
+      name: "Comb Filter",
+      params: {
+        delay: {
+          min: 0,
+          max: 3,
+          defaultValue: 0.027,
+          type: "float"
+        },
+        feedback: {
+          min: 0,
+          max: 1,
+          defaultValue: 0.84,
+          type: "float"
+        },
+        damping: {
+          min: 0,
+          max: 1,
+          defaultValue: 0.52,
+          type: "float"
+        },
+        cutoff: {
+          min: 0,
+          max: 22050,
+          defaultValue: 3000,
+          type: "float"
+        }
       }
     }
   },
 
   /**
-   * Public delay parameter
+   * Public parameters.
    */
 
   delay: {
@@ -113,10 +119,6 @@ Comb.prototype = Object.create(null, {
     }
   },
 
-  /**
-   * Public feedback parameter
-   */
-
   feedback: {
     enumerable: true,
     get: function () { return this._feedback.gain.value; },
@@ -125,10 +127,6 @@ Comb.prototype = Object.create(null, {
     }
   },
 
-  /**
-   * Public damping parameter
-   */
-
   damping: {
     enumerable: true,
     get: function () { return this._damping.gain.value; },
@@ -136,10 +134,6 @@ Comb.prototype = Object.create(null, {
       this._damping.gain.setValueAtTime(value, 0);
     }
   },
-
-  /**
-   * Public cutoff parameter
-   */
 
   cutoff: {
     enumerable: true,
@@ -156,3 +150,4 @@ Comb.prototype = Object.create(null, {
  */
 
 module.exports = Comb;
+
