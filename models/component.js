@@ -14,6 +14,7 @@ var Component = new mongoose.Schema({
   main : { type: String, default: 'index.js' },
   scripts : { type: Array, required: true },
   dependencies : [ Dependency ],
+  dependents : { type: Array },
   twitter : { type: String },
   license : { type: String },
   build : { type: Buffer },

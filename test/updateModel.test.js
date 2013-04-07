@@ -18,6 +18,7 @@ var
 var
   overdrive = require('../mocks/components/web-audio-components-overdrive/component.json'),
   delay     = require('../mocks/components/web-audio-components-delay/component.json'),
+  filter    = require('../mocks/components/web-audio-components-filter/component.json'),
   builtOverdrive = fs.readFileSync(__dirname + '/testData/builtOverdrive.js', 'utf-8');
 
 describe('Update Model', function () {
@@ -38,6 +39,16 @@ describe('Update Model', function () {
       expect(err).to.not.be.ok;
       expect(model.dependencies).to.have.length(1);
       expect(model.dependencies[0].name).to.equal('web-audio-components/filter');
+      done();
+    });
+  });
+
+  it('should store dependents', function (done) {
+    var model = new Component();
+    update(model, filter, function (err) {
+      expect(err).to.not.be.ok;
+      expect(model.dependents).to.have.length(1);
+      expect(model.dependents[0]).to.equal('web-audio-components/delay');
       done();
     });
   });

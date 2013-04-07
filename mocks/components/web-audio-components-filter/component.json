@@ -13,6 +13,9 @@
     "highpass"
   ],
   "dependencies": {},
+  "dependents": [
+    "web-audio-components/delay"
+  ],
   "development": {
     "web-audio-components/rack" : "*",
     "jsantell/allen" : "*",
