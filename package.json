@@ -1,6 +1,6 @@
 {
   "name": "web-audio-components-service",
-  "version": "0.1.0-14",
+  "version": "0.1.0-28",
   "private": true,
   "description": "Web Audio Components Service",
   "main": "server.js",
@@ -8,6 +8,10 @@
     "start": "node server.js",
     "test": "mocha --reporter spec"
   },
+  "domains": [
+    "component.fm",
+    "www.component.fm"
+  ],
   "dependencies": {
     "underscore": "1.4.3",
     "express": "3.0.6",
