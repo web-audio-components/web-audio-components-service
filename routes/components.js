@@ -2,7 +2,6 @@ var
   fs          = require('fs'),
   Component   = require('../models').Component,
   config      = require('../config'),
-  utils       = require('../lib/utils'),
   logger      = require('../lib/logger');
 
 var
@@ -18,13 +17,18 @@ var
 // TODO Probably can cache the entire result
 exports.index = function (req, res, next) {
   var query = req.query.q;
-  Component[query ? 'search' : 'find'](query || {}, RETURN_FIELDS, function (err, components) {
+  if (query)
+    Component.search(query, RETURN_FIELDS, handleQuery);
+  else
+    Component.find({}, RETURN_FIELDS).lean().exec(handleQuery);
+
+  function handleQuery (err, components) {
     if (!err) {
       res.json(components);
     } else {
       next(err);
     }
-  });
+  }
 };
 
 // GET /components/:owner/:name
