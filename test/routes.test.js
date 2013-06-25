@@ -21,7 +21,7 @@ describe('Routes', function () {
     async.series([
       clear,
       seed
-    ], function () { console.log('cmon'); done() });
+    ], done);
   });
 
   afterEach(clear);

@@ -19,7 +19,7 @@ console.log('   env  : ' + config.env);
 
 // Run task manager when not testing
 if (!config.isTest) {
-  require('./lib/taskManager');
+  require('./lib/tasks/manager');
 }
 
 module.exports = app;

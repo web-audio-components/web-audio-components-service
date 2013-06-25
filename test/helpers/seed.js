@@ -4,5 +4,5 @@ var
 // Current sync implementation would seed with 
 // mock registry
 module.exports = function (callback) {
-  sync.run(callback);
+  sync.run().then(callback.bind(null, null), callback);
 };

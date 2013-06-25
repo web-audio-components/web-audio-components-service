@@ -24,9 +24,11 @@ var
 describe('Update Model', function () {
   beforeEach(clear);
   afterEach(clear);
+
   it('should update a new, unsaved model', function (done) {
     var model = new Component();
     update(model, delay).then(function (saved) {
+      expect(saved).to.equal(model);
       expect(model.name).to.equal('delay');
       done();
     });
