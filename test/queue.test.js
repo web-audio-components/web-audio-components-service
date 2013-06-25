@@ -1,6 +1,7 @@
 process.env.NODE_ENV = 'test';
 
 var
+  resolve = require( 'when' ).resolve,
   chai    = require( 'chai' ),
   should  = chai.should(),
   expect  = chai.expect,
@@ -12,9 +13,11 @@ describe('Queue Helper', function () {
     var
       collection = 'abcdefghijklmnopqrstuvwxyz'.split(''),
       counter = 0;
-    queue(collection, function (data, callback) {
-      ++counter && callback();
-    }, function () {
+
+    queue(collection, function (data) {
+      ++counter;
+      return resolve();
+    }).then(function () {
       expect(counter).to.equal(collection.length);
       done();
     });

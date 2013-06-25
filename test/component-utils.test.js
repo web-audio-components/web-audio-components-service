@@ -17,7 +17,7 @@ var
   delay      = require('../mocks/components/web-audio-components-delay/component.json'),
   builtDelay = fs.readFileSync(__dirname + '/testData/builtDelay.js', 'utf-8');
 
-describe('Component Helper', function () {
+describe('component-utils', function () {
 
   beforeEach(clear);
   afterEach(clear);

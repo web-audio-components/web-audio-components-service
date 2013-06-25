@@ -46,16 +46,14 @@ var minimalExpected = "new: web-audio-components/comb - http://git.io/xxxxxx [0.
 
 describe('Tweets', function () {
   it('should post a message with twitter account, type, keywords', function (done) {
-    tweet(fullModel, function (err, res) {
-      expect(err).to.not.be.ok;
+    tweet(fullModel).then(function (res) {
       expect(res.text).to.equal(fullExpected);
       done();
     });
   });
   
   it('should post a message without twitter account, type, keywords', function (done) {
-    tweet(minimalModel, function (err, res) {
-      expect(err).to.not.be.ok;
+    tweet(minimalModel).then(function (res) {
       expect(res.text).to.equal(minimalExpected);
       done();
     });

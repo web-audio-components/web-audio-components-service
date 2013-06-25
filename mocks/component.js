@@ -1,6 +1,7 @@
 // Sloppy mock for component.install in tests
 
 var
+  defer   = require('when').defer,
   utils   = require('../lib/utils'),
   fs      = require('fs-extra'),
   mkdirp  = require('mkdirp'),
@@ -28,11 +29,15 @@ Package.prototype.install = function () {
     deps.push(pkg);
   });
 
-  queue(deps, function (dep, callback) {
+  queue(deps, function (dep) {
+    var deferred = defer();
     var pkg = new Package(dep, '*');
-    pkg.on('end', callback);
+    pkg.on('end', function (val) {
+      deferred.resolve(val);
+    });
     pkg.install();
-  }, function () {
+    return deferred.promise;
+  }).then(function () {
     copyDir(src, dest, function (err) {
       that.emit('end');
     });
