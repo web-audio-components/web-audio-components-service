@@ -1,6 +1,6 @@
 var
   config     = require('./config'),
-  help       = require('./lib/routeHelpMessage'),
+  help       = require('./routes/help'),
   components = require('./routes/components'),
   mocks      = require('./routes/mocks'),
   logger     = require('./lib/logger');
