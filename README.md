@@ -1,11 +1,13 @@
 Web Audio Components Service
 ============
 
+[discussion group](https://groups.google.com/forum/#!forum/web-audio-components)
+
 [![Build Status](https://travis-ci.org/web-audio-components/web-audio-components-service.png)](https://travis-ci.org/web-audio-components/web-audio-components-service)
 
 The API supporting the Web Audio Components project.
 
-Currently hosted at [web-audio-components-api.jit.su](http://web-audio-components-api.jit.su)
+Currently hosted at [api.component.fm](http://api.component.fm)
 
 ## API
 
