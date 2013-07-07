@@ -1,6 +1,6 @@
 {
   "name": "web-audio-components-service",
-  "version": "0.1.0-32",
+  "version": "0.1.0-34",
   "private": true,
   "description": "Web Audio Components Service",
   "main": "server.js",
@@ -14,7 +14,7 @@
   "dependencies": {
     "underscore": "1.4.3",
     "express": "3.0.6",
-    "mongoose": "3.6.x",
+    "mongoose": "3.6.11",
     "component": "0.11.0",
     "component-builder": "0.6.2",
     "mkdirp": "0.3.4",
@@ -29,7 +29,6 @@
     "gitio": "1.0.1",
     "muri": "0.3.0",
     "winston": "0.7.2",
-    "winston-mongodb": "0.4.0",
     "when": "2.1.1"
   },
   "devDependencies": {
